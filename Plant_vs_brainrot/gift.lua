@@ -1,4 +1,4 @@
-local listcangift = {"Lir"} -- tên Item cần gửi
+local listcangift = {"Dragon Cannelloni"} -- tên Item cần gửi
 local listnguoicangift = { "MrsAndrewkn0ll2005",
     "Emmajolt2012",
     "MrsGamerKnack2006",
