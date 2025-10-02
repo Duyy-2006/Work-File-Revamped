@@ -12,8 +12,9 @@ local urls
 
 if type == "Recieve" then
     urls = {
-        "https://raw.githubusercontent.com/Duyy-2006/Grow-A-Garden-Gift/refs/heads/main/telechar",
-        "https://raw.githubusercontent.com/Duyy-2006/Grow-A-Garden-Gift/refs/heads/main/change",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/tutorial.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/change_recieve.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/teleport.lua",
     }
 elseif type == "Gift" then
     urls = {
