@@ -17,8 +17,8 @@ if type == "Recieve" then
     }
 elseif type == "Gift" then
     urls = {
-        "https://raw.githubusercontent.com/Duyy-2006/Grow-A-Garden-Gift/refs/heads/main/change_recieve",
-        "https://raw.githubusercontent.com/Duyy-2006/Grow-A-Garden-Gift/refs/heads/main/Recieve",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/tutorial.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/gift.lua",
     }
 end
 
