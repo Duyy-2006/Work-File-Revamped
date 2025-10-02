@@ -5,7 +5,7 @@ getgenv().Targets = {"MrsAndrewkn0ll2005",
     "MrsGamerKnack2006",
     "NexusJill_Dancer", } -- names or display names (partial ok, case-insensitive)
 getgenv().CycleAllMatches = true   -- true = cycle through all matched players, false = only first match
-getgenv().CycleDelay       = math.random(5, 15)     -- seconds to wait before moving on to the next matched player
+getgenv().CycleDelay       = 30     -- seconds to wait before moving on to the next matched player
 getgenv().FollowTarget     = false -- true = keep re-teleporting near current target until it's time to switch
 getgenv().FollowInterval   = 1.25  -- seconds between follow teleports
 getgenv().OffsetFromTarget = Vector3.new(0, 3, -3) -- relative offset (above & slightly behind the target)
