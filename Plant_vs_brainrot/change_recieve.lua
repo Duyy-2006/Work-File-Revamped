@@ -1,6 +1,6 @@
 -- LocalScript in StarterPlayerScripts
 print("OKAY")
-local TreeTable = {"Red Panda",}
+local TreeTable = {"Dragon Cannelloni",}
 
 local Players     = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -37,7 +37,7 @@ while true do
         end
     end
 
-    if matchCount > 3 then
+    if matchCount > 0 then
         writefile(filename, "Yummytool")
         player:Kick("du pet r be iu di ra th")
     else 
