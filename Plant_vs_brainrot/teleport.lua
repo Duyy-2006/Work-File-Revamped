@@ -7,7 +7,7 @@ getgenv().Targets = {"MrsAndrewkn0ll2005",
 getgenv().CycleAllMatches = true   -- true = cycle through all matched players, false = only first match
 getgenv().CycleDelay       = 30     -- seconds to wait before moving on to the next matched player
 getgenv().FollowTarget     = false -- true = keep re-teleporting near current target until it's time to switch
-getgenv().FollowInterval   = 1.25  -- seconds between follow teleports
+getgenv().FollowInterval   = 30  -- seconds between follow teleports
 getgenv().OffsetFromTarget = Vector3.new(0, 3, -3) -- relative offset (above & slightly behind the target)
 getgenv().StopKey          = Enum.KeyCode.RightShift -- press to stop the script loop
 
