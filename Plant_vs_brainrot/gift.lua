@@ -1,5 +1,8 @@
 local listcangift = {"Lir"} -- tên Item cần gửi
-local listnguoicangift = {"YLiZQZFeoUJ"} -- tên Player cần gửi
+local listnguoicangift = { "MrsAndrewkn0ll2005",
+    "Emmajolt2012",
+    "MrsGamerKnack2006",
+    "NexusJill_Dancer",} -- tên Player cần gửi
 
 local function GetAllCayTrongvapet()
     for i,v in pairs(workspace.Plots:GetChildren()) do
