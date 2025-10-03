@@ -9,10 +9,9 @@ local JobId           = game.JobId
 local player      = game:GetService("Players").LocalPlayer
 
 local urls= {
-    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/autoaccept.lua",
-    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/tutorial.lua",
-    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/change_recieve.lua",
-    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/teleport.lua",
+    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Steal_A_Brainrot/antikick.lua",
+    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Steal_A_Brainrot/mainscript.lua",
+    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Steal_A_Brainrot/trackstats.lua",
 }
 for _, url in ipairs(urls) do
     local ok, chunkOrErr = pcall(game.HttpGet, game, url)
@@ -36,3 +35,4 @@ for _, url in ipairs(urls) do
         end
     end)
 end
+
