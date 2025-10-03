@@ -2,7 +2,7 @@
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
-local type = "Gift"
+local type = "Recieve"
 local TeleportService = game:GetService("TeleportService")
 local PlaceId         = game.PlaceId
 local JobId           = game.JobId
@@ -12,13 +12,16 @@ local urls
 
 if type == "Recieve" then
     urls = {
-        "https://raw.githubusercontent.com/Duyy-2006/Grow-A-Garden-Gift/refs/heads/main/telechar",
-        "https://raw.githubusercontent.com/Duyy-2006/Grow-A-Garden-Gift/refs/heads/main/change",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/autoaccept.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/tutorial.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/change_recieve.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/teleport.lua",
     }
 elseif type == "Gift" then
     urls = {
-        "https://raw.githubusercontent.com/Duyy-2006/Grow-A-Garden-Gift/refs/heads/main/change_recieve",
-        "https://raw.githubusercontent.com/Duyy-2006/Grow-A-Garden-Gift/refs/heads/main/Recieve",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/tutorial.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/gift.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/change_gift.lua",
     }
 end
 

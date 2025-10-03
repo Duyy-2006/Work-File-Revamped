@@ -1,5 +1,12 @@
-local listcangift = {"Lir"} -- tên Item cần gửi
-local listnguoicangift = {"YLiZQZFeoUJ"} -- tên Player cần gửi
+if not game:IsLoaded() then
+    repeat game.Loaded:Wait() until game:IsLoaded()
+end
+wait(5)
+local listcangift = {"Dragon Cannelloni"} -- tên Item cần gửi
+local listnguoicangift = { "MrsAndrewkn0ll2005",
+    "Emmajolt2012",
+    "MrsGamerKnack2006",
+    "NexusJill_Dancer",} -- tên Player cần gửi
 
 local function GetAllCayTrongvapet()
     for i,v in pairs(workspace.Plots:GetChildren()) do
