@@ -1,4 +1,9 @@
-script_key="DQOpHAFDdWyHPtccsfRSKloiQtuvlmQh";
+local keys = {  -- Add as many key
+    "DQOpHAFDdWyHPtccsfRSKloiQtuvlmQh", 
+    "VCxgpmklByxYlEOOVpIcITcmFdDIpsfQ", 
+}
+math.randomseed(os.time())
+script_key = keys[math.random(#keys)];
 getgenv().pvbConfig = {
     AUTO_UPDATE_RESTART = true,
     MAX_FPS = 3,  -- This will override setfpscap()
