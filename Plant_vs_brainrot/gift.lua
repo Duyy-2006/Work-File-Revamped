@@ -2,11 +2,23 @@ if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
 wait(5)
-local listcangift = {"Dragon Cannelloni"} -- tên Item cần gửi
-local listnguoicangift = { "MrsAndrewkn0ll2005",
+local listcangift = {"Shroombino", "Tomatrio",} -- tên Item cần gửi
+local listnguoicangift = { "minny_nxy",
+    "Hug0Hannah47",
+    "MrsAndrewkn0ll2005",
     "Emmajolt2012",
     "MrsGamerKnack2006",
-    "NexusJill_Dancer",} -- tên Player cần gửi
+    "NexusJill_Dancer",
+    "ArrowFlick21",
+    "XxCyberPixelChaosxX2",
+    "Z0e_Thunder2014YT",
+    "PandaFusionPow3r",
+    "XxPaisleySaberxX2023",
+    "SamuelHawkLucky20191",
+    "L3g3ndCraftPrimal",
+    "XxSt3althN3onxX2005",
+    "XxHeroSparkOmegaxX20",
+    "Cooki3Alpha2008",} -- tên Player cần gửi
 
 local function GetAllCayTrongvapet()
     for i,v in pairs(workspace.Plots:GetChildren()) do
