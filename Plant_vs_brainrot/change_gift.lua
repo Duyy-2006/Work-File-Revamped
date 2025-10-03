@@ -4,7 +4,7 @@ if not game:IsLoaded() then
 end
 wait(15)
 local TreeTable = {
-    "Dragon Cannelloni",
+    "Shroombino", "Tomatrio",
 }
 
 local Players     = game:GetService("Players")
