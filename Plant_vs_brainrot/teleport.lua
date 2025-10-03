@@ -1,9 +1,21 @@
 --// ==================== Multi-Player Teleport (Synapse-friendly) ====================
 --// CONFIG — tweak these to your liking
-getgenv().Targets = {"MrsAndrewkn0ll2005",
+getgenv().Targets = {"minny_nxy",
+    "Hug0Hannah47",
+    "MrsAndrewkn0ll2005",
     "Emmajolt2012",
     "MrsGamerKnack2006",
-    "NexusJill_Dancer", } -- names or display names (partial ok, case-insensitive)
+    "NexusJill_Dancer",
+    "ArrowFlick21",
+    "XxCyberPixelChaosxX2",
+    "Z0e_Thunder2014YT",
+    "PandaFusionPow3r",
+    "XxPaisleySaberxX2023",
+    "SamuelHawkLucky20191",
+    "L3g3ndCraftPrimal",
+    "XxSt3althN3onxX2005",
+    "XxHeroSparkOmegaxX20",
+    "Cooki3Alpha2008", } -- names or display names (partial ok, case-insensitive)
 getgenv().CycleAllMatches = true   -- true = cycle through all matched players, false = only first match
 getgenv().CycleDelay       = 30     -- seconds to wait before moving on to the next matched player
 getgenv().FollowTarget     = false -- true = keep re-teleporting near current target until it's time to switch
