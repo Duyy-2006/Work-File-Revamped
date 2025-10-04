@@ -1,197 +1,153 @@
+local Second_Sea = game.PlaceId == 72907489978215
+local Second_Sea_Loc = CFrame.new(1532.36096, 83.9225464, 2335.48999, -0.407974303, 3.71246642e-08, 0.912993431, 5.38818279e-09, 1, -3.825485e-08, -0.912993431, -1.06876197e-08, -0.407974303)
+local First_Sea_Loc = CFrame.new(-13887.3965, -11048.6885, 350.285706, 0.948456287, 1.08180259e-07, 0.316907942, -1.06977055e-07, 1, -2.11960565e-08, -0.316907942, -1.37983438e-08, 0.948456287)
 
--- // อ่านหน่อย ถามว่าโดนแบนไหม โดนครับ แต่มีสูตรมาบอก เอาง่าย ๆ ฟามยังไงก้ได้ ให้ไม่รีเกมเกิน สองรอบ คือแบบ ฟามยาวๆแบบรอบเดียวจบแค่นั้น แต่นี้ก็ไม่โดนเตือนแล้ว หากจะนำไอดีไปขายให้ แจ้งด้วยว่าห้ามนำรหัสไปรันสคริปต์ต่อไม่งั้นจะโดนแบน
--- // แค่ตัวใหม่ มันมีระบบที่ให้เราฟามได้เร็วขึ้นมากๆ ประหยัดเวลาไปได้เยอะ
-
-_G.RAM = {
-	["Roblox Account Manager"] = {
-		["Auto Sending"] = false,
-		["Delay Log"] = 5,
+_G.Settings = _G.Settings or {
+	["DefaultPosition"] = (Second_Sea and Second_Sea_Loc) or First_Sea_Loc,
+	["AfkCheckTime"] = 30, -- Seconds
+	["AfkFix"] = "Reset", -- Rejoin, Reset
+	["EquipRod"] = "Auto", -- Trident Rod, Destiny Rod,... Rod
+	["InstantFishing"] = true,
+	["Return to Sea1"] = {
+		["Obtained All Rods"] = true,
 	},
-}
-
-_G.Loader = {
-	["Check Version"] = "Assetlty 3.0",
-	["Main Manager"] = {
-		["Fishing Location"] = {
-			["Main Position"] = CFrame.new(-13627.251, -11039.2109, 327.531891, 0.626239002, -5.55564093e-08, 0.779631138, 2.05973834e-08, 1, 5.47150094e-08, -0.779631138, -1.82063111e-08, 0.626239002), 
-			["Second Location"] = { 
-				["Condition"] = { 
-					["Rod Data"] = "Rapid Rod", 
-					["Level Data"] = nil, 
-				}, 
-				["Second Position"] = CFrame.new(1390.84265, -600.593933, 2328.21313, 0.350875288, 1.68661202e-07, 0.936422169, -9.42693212e-09, 1, -1.76580102e-07, -0.936422169, 5.31300053e-08, 0.350875288), 
-			},
-		}, 
-		["Sell Data"] = {
-			["Type Sell"] = { 
-				["Event Fish"] = true, 
-				["Exotic Fish"] = true, 
-				["Mythical Fish"] = true, 
-				["Legendary Fish"] = true, 
-				["Secret Fish"] = false,
-			}, 
-		}, 
-	},  
-	["Enchant Manager"] = {
-		["Add Task"] = true, 
-		["Condition"] = { 
-			["Money Data"] = 100000, 
-		},
-		["Data Type Enchant"] = {
-			["Carrot Rod"] = {"Hasty","Clever",},
-			["Luminescent Oath"] = {"Hasty","Clever"},
-			["Ethereal Prism Rod"] = {"Clever"},
-			["Great Rod of Oscar"] = {"Clever"},
-		},
-	}, 
-	["Aurora Manager"] = {
-		["Aurora Party"] = {
-			["Allow Doing"] = false,
-			["Client"] = { -- // Allow Multi Client
-				"",
-			},
-		},
-		["Aurora Totem"] = {
-			["Add Task"] = true, 
-			["Condition"] = { 
-				["Money Data"] = 2555500, 
-			},
-		},
-		["Sundial Totem"] = {
-			["Add Task"] = true, 
-			["Condition"] = { 
-				["Money Data"] = 2555500, 
-			},
-		},
+	["SellFish"] = {
+		["SellDelay"] = 120, -- Seconds
+		["Enable"] = true,
+		["Method"] = {
+			["Event"] = true,
+			["Enchant"] = false,
+			["Mythical"] = true,
+			["Legendary"] = true,
+			["Exotic"] = true -- recommend to enable it
+		}
 	},
-	["Lucky Manager"] = {
-		["Bait Manager"] = {
-			["Req Passive"] = {"Luck"}, -- // "LureSpeed"
-			["Auto Equip Best"] = true,
-			["Crate Manager"] = {
-				["Buying Bait Crate"] = true,
-				["Condition"] = { 
-					["Delay Buying"] = 30, -- // Second
-					["Money Data"] = 50000, 
-				},
-			},
-		}, 				
-		["Luck Effect"] = {
-			["Allow Buying"] = true,
-			["Condition"] = { 
-				["Money Data"] = 50500, 
-			},
-		}, 
-	}, 
-	["Quest Manager"] = { 
-		["Rod Of The Forgotten Fang"] = {
-			["Add Task"] = true,
-			["Condition"] = { 
-				["Level Data"] = 1000, 
-				["Money Data"] = 5050000, 
-			},
-		},
-		["Rod Of The Zenith"] = {
-			["Add Task"] = true,
-			["Condition"] = { 
-				["Level Data"] = 1000, 
-				["Money Data"] = 10000000, 
-			},
-		}, 
-		["Rod Of The Eternal King"] = {
-			["Add Task"] = true,
-			["Condition"] = { 
-				["Level Data"] = 1000, 
-				["Money Data"] = 500000, 
-			},
-		},
-		["Magma Rod"] = {
-			["Add Task"] = true,
-			["Condition"] = {
-				["Level Data"] = 1000,
-				["Money Data"] = 100000,
-			},
-		}, 
-		["Duskwire"] = {  -- // Added Soon
-			["Add Task"] = false,
-			["Condition"] = {
-				["Level Data"] = 1000,
-				["Money Data"] = 7900000,
-			},
-		}, 
-		["Leviathan's Fang Rod"] = {
-			["Add Task"] = true,
-			["Condition"] = {
-				["Level Data"] = 500,
-				["Money Data"] = 1200000,
-			},
-		},
-		["Ruinous Oath"] = {  -- // Added Soon
-			["Add Task"] = false,
-			["Condition"] = {
-				["Level Data"] = 1000,
-				["Money Data"] = 50000000,
-			},
-		},
-		["Wicked Fang Rod"] = { 
-			["Add Task"] = true,
-			["Condition"] = {
-				["Level Data"] = 1000,
-				["Money Data"] = 3900000,
-			},
-		},
-	}, 
-	["Default Manager"] = {
-		["Default Buying"] = {
-			["Carbon Rod"] = false,
-			["Rapid Rod"] = true,
-			["Carrot Rod"] = true,
-			["Kraken Rod"] = false,
-			["Luminescent Oath"] = true,
-			["Ethereal Prism Rod"] = true,
-			["Great Rod of Oscar"] = true,
-		}, 
-		["Default Equip"] = { 
-			"Adventurer's Rod",
-			"Rapid Rod",
-			"Carrot Rod",
-			"Luminescent Oath",
+	['Rod'] = {
+		-- Necessary Rods: Rods that are required or essential for the gameplay
+		Necessary_Rods = {
+			"Steady Rod", -- First Sea Rod
+			"Reinforced Rod",
+			"Depthseeker Rod",
+			"Kraken Rod",
+			"Zeus Rod",
 			"Ethereal Prism Rod",
-			"Great Rod of Oscar",
+
+			"Free Spirit Rod",
 		},
-	}, 
-	["Custom Manager"] = { 
-		["Purchase Data"] = { 
-			["Rod Data"] = {
-				"Firework Rod", "Rod Of The Zenith", "Wicked Fang Rod",
-				"Ethereal Prism Rod", "Zeus Rod", "Treasure Rod",
-				"Frog Rod", "The Boom Ball", "Avalanche Rod",
-				"Summit Rod", "Lucky Rod", 
-				"Destiny Rod", "Cerulean Fang Rod", "Azure Of Lagoon",
-				"Arctic Rod", "Tempest Rod", "Leviathan's Fang Rod",
-				"Heaven's Rod", "Paper Fan Rod", "Abyssal Specter Rod",
-				"Aurora Rod", "Verdant Shear Rod",
-				"Rapid Rod", "Fungal Rod", "Fortune Rod",
-				"Mythical Rod", "Magnet Rod", "Rainbow Cluster Rod",
-				"Scurvy Rod", "Nocturnal Rod",
-				"Blazebringer Rod", "Free Spirit Rod", "Plastic Rod",
-				"Midas Rod", "Reinforced Rod", "Depthseeker Rod",
-				"Sunken Rod", "Great Dreamer Rod", "Seraphic Rod",
-				"Kings Rod", "Crystallized Rod", "Great Rod of Oscar",
-				"Champions Rod", "Challenger's Rod", "Carbon Rod",
-				"Kraken Rod", "Training Rod", "Volcanic Rod",
-				"Fast Rod", "No-Life Rod", "Scarlet Spincaster Rod",
-				"Trident Rod", "Magma Rod", "Frostbane Rod",
-				"Merchant Rod", "Wildflower Rod", "Luminescent Oath",
-				"Carrot Rod", "Phoenix Rod", "Steady Rod",
-				"Stone Rod", "Firefly Rod", "Long Rod",
-				"Luminescent Oath"
+	
+		-- Custom Rods: Special rods that can be customized after obtained all necessary rods.
+		Custom_Rods = {
+			"Aurora Rod",
+			"Tempest Rod",
+			"Abyssal Specter Rod",
+			"Destiny Rod",
+			"Challenger's Rod",
+			"Rod Of The Zenith",
+			"Challenger's Rod",
+			"Nocturnal Rod",
+			"Kings Rod",
+			"Trident Rod",
+			"Poseidon Rod",
+			"Champions Rod",
+			"Volcanic Rod",
+			"Summit Rod",
+			"Training Rod",
+			"Plastic Rod",
+			"Carbon Rod",
+			"Long Rod",
+			"Lucky Rod",
+			"Fortune Rod",
+			"Rapid Rod",
+			"Magnet Rod",
+			"Mythical Rod",
+			"Midas Rod",
+			"Scurvy Rod",
+			"Stone Rod",
+			"Phoenix Rod",
+			"Arctic Rod",
+			"Crystalized Rod",
+			"Ice Warpers Rod",
+			"Avalanche Rod",
+			"Stone Rod",
+
+			"Wildflower Rod",
+			"Firefly Rod",
+			"Frog Rod",
+			"Azure Of Lagoon",
+			"Free Spirit Rod", -- need bestinary 70%
+			"Verdant Shear Rod",
+			"Great Dreamer Rod",
+		},
+	
+		-- Puzzle Rods: Rods that will be available in the future (currently unavailable)
+		Puzzle_Rods = {
+			--["Heaven's Rod"] = 400, -- ( name, required level )
+		},
+	},	
+	["Enchant"] = {
+		["Enabled"] = true,            -- Enable or disable the enchantment system
+		["Rod"] = {                    -- Specific enchantments for each rod
+			["Depthseeker Rod"] = {
+				LevelFarm = {"Clever"}
 			},
-			["Condition"] = { 
-				["Level Data"] = 1000,
+			["Zeus Rod"] = {
+				LevelFarm = {"Clever"}
 			},
-		}, 
+			["Kraken Rod"] = {
+				LevelFarm = {"Clever"}
+			},
+			["Ethereal Prism Rod"] = {
+				LevelFarm = {"Hasty"},
+				CashFarm = {"Abyssal"},
+			},
+			["Free Spirit Rod"] = {
+				LevelFarm = {"Clever"},
+			}
+		},
 	},
-} 
-script_key="iITAcWAZWwavNyBVbJcrtmwfgMkHFjOX";
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0d072f16b1261c8a4030d22e5265c1f7.lua"))()
+	["Totems"] = {
+		["Enabled"] = true,         -- Enable or disable the totem system
+		["ActivationLevel"] = 300,  -- Level required to activate totems
+	
+		["DayTotem"] = "Sundial Totem",    -- Totem used during the day
+		["NightTotem"] = "Aurora Totem",   -- Totem used during the night
+	
+		["AutoPurchase"] = true,    -- Enable automatic totem purchasing
+		["PurchaseLimit"] = {       -- Maximum allowed purchases per type
+			["DayTotem"] = 1,
+			["NightTotem"] = 1,
+		},
+	},	
+	['EnabledFishingZones'] = true,
+	["CastZone"] = {
+		['OnLevel'] = 300,
+		['Ignored_Aurora'] = true, -- skip farming level when aurora is active
+		['Zones'] = {
+			"Forsaken Veil - Scylla",
+			"Lovestorm Eel",
+			"Orcas Pool",
+			"The Kraken Pool",
+			"Megalodon Default",
+			"The Depths - Serpent",
+			"Great White Shark",
+			"Great Hammerhead Shark",
+			"Whale Shark",
+
+			"Animal Pool",
+		},
+	},
+	["RAM_Config"] = {
+		['Port'] = 7963,
+		['Password'] = "",
+		['Update Interval'] = 5,
+		['Subfix'] = " - ",
+		['Rod Displayed'] = 10,
+	},
+	['ShakeMode'] = "Fast", -- Fast, Fix bug
+	["FpsBoost"] = true,
+	["Black_Screen"] = true
+}
+getgenv().Key = "MARU-9HFI-XPU4S-T0E3-TSKJZ-AQ10"
+getgenv().id = "935143471243726858"
+getgenv().Script_Mode = "Kaitun_Script"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()
