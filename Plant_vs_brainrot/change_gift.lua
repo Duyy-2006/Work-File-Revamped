@@ -4,18 +4,7 @@ if not game:IsLoaded() then
 end
 wait(15)
 local TreeTable = {
-    "Bredda Ratto",
-    "Gattolini Owlini",
-    "Squalo Cavallo",
-    "Arminini Bodybuilderini",
-    "Blueberrinni Octopussini",
-    "Brri Brri Bicus Dicus Bombicus",
-    "Crazylone Pizaione",
-    "Garamararam",
-    "Vacca Saturno Saturnita",
-    "Los Tralaleritos",
-    "Pot Hotspot",
-    "Los Mr Carrotitos",
+    "Dragon Cannelloni",
 }
 
 local Players     = game:GetService("Players")
