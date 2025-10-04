@@ -1,7 +1,7 @@
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
-local TreeTable = {"Tomatrio","Shroombino",}
+local TreeTable = {"Dragon Cannelloni",}
 
 local Players     = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
