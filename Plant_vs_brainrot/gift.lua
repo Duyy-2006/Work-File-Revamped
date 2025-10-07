@@ -39,10 +39,8 @@ local function GetAllCayTrongvapet()
         end
     end
 end
-for i = 1, 5 do 
-    GetAllCayTrongvapet()
-    wait(5)
-end
+GetAllCayTrongvapet()
+
 
 
 local Players = game:GetService("Players")
