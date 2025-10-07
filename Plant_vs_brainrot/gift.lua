@@ -2,7 +2,7 @@ if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
 wait(5)
-local listcangift = {"Dragon Cannelloni",} -- tên Item cần gửi
+local listcangift = {"Gattolini Owlini",} -- tên Item cần gửi
 local listnguoicangift = { "minny_nxy",
     "Hug0Hannah47",
     "MrsAndrewkn0ll2005",
