@@ -18,14 +18,14 @@ getgenv().pvbConfig = {
     KEEP_SEED = {},
     KEEP_PLANT_RARITY = {"Secret", "Limited"},
     KEEP_BRAINROT_MONEY_PER_SECOND = 20000,  -- Number
-    KEEP_BRAINROT_RARITY = {"Secret", "Limited"},
+    KEEP_BRAINROT_RARITY = {},
 
     SELL_BRAINROT_DELAY = 30,
     SELL_PLANT_DELAY = 30,
 
     -- Webhook
     BRAINROT_WEBHOOK_URL = "https://discord.com/api/webhooks/1206831142854987846/R7HwDv6A6Xmf9rwaLORBDMr3_6tc-dEJr4GVKYqtpD4o8D3moLW1NwRxcKxVSxXt2V6j",
-    DISCORD_ID = "935143471243726858",
+    DISCORD_ID = "",
     NOTIFY_RARITY = {"Secret", "Limited"},
     NOTIFY_MONEY_PER_SECOND = math.huge,
     WEBHOOK_NOTE = "",
