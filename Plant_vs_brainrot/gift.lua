@@ -2,7 +2,25 @@ if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
 wait(5)
-local listcangift = {"Los Mr Carrotitos",} -- tên Item cần gửi
+local listcangift = {
+    "Dragon Cannelloni",
+    "Arminini Bodybuilderini",
+    "Bredda Ratto",
+    "Squalo Cavallo",
+    "Gattolini Owlini",
+    "Hotspotini Burrito",
+    "Wardenelli Brickatoni",
+    "Rhino Toasterino",
+    "Blueberrinni Octopussini",
+    "Los Tralaleritos",
+    "Brri Brri Bicus Dicus Bombicus",
+    "Crazylone Pizaione",
+    "Garamararam",
+    "Pot Hotspot",
+    "La Tomatoro",
+    "Los Sekolitos",
+}
+ -- tên Item cần gửi
 local listnguoicangift = { "minny_nxy",
     "Hug0Hannah47",
     "MrsAndrewkn0ll2005",
