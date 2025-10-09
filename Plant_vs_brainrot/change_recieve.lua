@@ -30,6 +30,7 @@ local error_count = 0
 repeat task.wait() until LocalPlayer and LocalPlayer:FindFirstChild("Backpack")
 
 while true do
+    wait(1)
     local matchCount = 0
 
     -- Count tools in Backpack
