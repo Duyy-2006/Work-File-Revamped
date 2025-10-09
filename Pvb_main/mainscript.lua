@@ -1,3 +1,7 @@
+if not game:IsLoaded() then
+    repeat game.Loaded:Wait() until game:IsLoaded()
+end
+wait(5)
 local keys = {  -- Add as many key
     "DQOpHAFDdWyHPtccsfRSKloiQtuvlmQh", 
     "VCxgpmklByxYlEOOVpIcITcmFdDIpsfQ", 
