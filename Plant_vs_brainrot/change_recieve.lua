@@ -3,21 +3,6 @@ if not game:IsLoaded() then
 end
 local TreeTable = {
     "Dragon Cannelloni",
-    "Arminini Bodybuilderini",
-    "Bredda Ratto",
-    "Squalo Cavallo",
-    "Gattolini Owlini",
-    "Hotspotini Burrito",
-    "Wardenelli Brickatoni",
-    "Rhino Toasterino",
-    "Blueberrinni Octopussini",
-    "Los Tralaleritos",
-    "Brri Brri Bicus Dicus Bombicus",
-    "Crazylone Pizaione",
-    "Garamararam",
-    "Pot Hotspot",
-    "La Tomatoro",
-    "Los Sekolitos",
 }
 
 
@@ -58,7 +43,7 @@ while true do
         end
     end
 
-    if matchCount > 4 then
+    if matchCount > 0 then
         writefile(filename, "Yummytool")
         player:Kick("du pet r be iu di ra th")
     else 
