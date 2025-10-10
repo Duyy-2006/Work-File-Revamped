@@ -58,7 +58,7 @@ while true do
         end
     end
 
-    if matchCount > 9 then
+    if matchCount > 4 then
         writefile(filename, "Yummytool")
         player:Kick("du pet r be iu di ra th")
     else 
