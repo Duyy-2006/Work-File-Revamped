@@ -1,3 +1,7 @@
+if not game:IsLoaded() then
+    repeat game.Loaded:Wait() until game:IsLoaded()
+end
+wait(5)
 while true do
     if game:GetService("Players").LocalPlayer.PlayerGui.HUD:FindFirstChild('Tutorial') and game:GetService("Players").LocalPlayer.PlayerGui.HUD.Tutorial.Visible == true then
         game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("SpawnTutorialBrainrot"):FireServer()
