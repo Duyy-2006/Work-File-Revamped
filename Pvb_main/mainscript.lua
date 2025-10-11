@@ -27,7 +27,7 @@ getgenv().pvbConfig = {
     -- Keep = Favorite (Prevent sell)
     KEEP_SEED = {},  -- Plant Names
     KEEP_PLANT_RARITY = {},
-    KEEP_BRAINROT_MONEY_PER_SECOND = 20000,  -- 20000 means keep $20+k/s brainrot
+    KEEP_BRAINROT_MONEY_PER_SECOND = 7500,  -- 20000 means keep $20+k/s brainrot
     KEEP_BRAINROT_RARITY = {}, 
 
     SELL_BRAINROT_DELAY = 30,  -- Delay for "sell all" brainrot
