@@ -11,6 +11,7 @@ local player      = game:GetService("Players").LocalPlayer
 local urls= {
     "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Pvb_main/mainscript.lua",
     "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Pvb_main/trackstats.lua",
+    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Pvb_main/autounfav",
 }
 for _, url in ipairs(urls) do
     local ok, chunkOrErr = pcall(game.HttpGet, game, url)
