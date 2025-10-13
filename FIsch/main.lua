@@ -132,3 +132,6 @@ _G.Settings = {
 	["FpsBoost"] = true,
 	["Black_Screen"] = true
 }
+script_key="wCmRvazXebTECcbSQYTceGhOAomLDcNj";
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/16ddf2948fdb2a2791df613f2b969e7c.lua"))()
+
