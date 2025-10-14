@@ -3,7 +3,7 @@ if not game:IsLoaded() then
 end
 wait(5)
 local listcangift = {
-    "Shroombino",
+    "Tomatrio",
 }
  -- tên Item cần gửi
 local listnguoicangift = { "minny_nxy",
