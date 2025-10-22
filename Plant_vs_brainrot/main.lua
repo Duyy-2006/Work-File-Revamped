@@ -21,7 +21,6 @@ elseif type == "Gift" then
     urls = {
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/tutorial.lua",
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/gift.lua",
-        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Plant_vs_brainrot/change_gift.lua",
     }
 end
 
