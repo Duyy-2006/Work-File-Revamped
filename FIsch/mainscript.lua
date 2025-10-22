@@ -1,6 +1,6 @@
 _G.Config = {
-	["FPSCap"] = 30,
-	["WhiteScreen"] = true,
+	["FPSCap"] = 15,
+	["WhiteScreen"] = false,
 	["BuyLuck"] = true,
 	["AutoSell"] = {
 		["Delay"] = 10, -- Seconds
