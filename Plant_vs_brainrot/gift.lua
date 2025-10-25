@@ -5,7 +5,22 @@ end
 task.wait(5)
 
 -- // Config
-local listcangift = { "Tomatrio", "Mango", "Mr Carrot", "Shroombino" } -- watched item names (substring match)
+local listcangift = { "Dragon Cannelloni",
+    "Arminini Bodybuilderini",
+    "Bredda Ratto",
+    "Squalo Cavallo",
+    "Gattolini Owlini",
+    "Hotspotini Burrito",
+    "Wardenelli Brickatoni",
+    "Rhino Toasterino",
+    "Blueberrinni Octopussini",
+    "Los Tralaleritos",
+    "Brri Brri Bicus Dicus Bombicus",
+    "Crazylone Pizaione",
+    "Garamararam",
+    "Pot Hotspot",
+    "La Tomatoro",
+    "Los Sekolitos",} -- watched item names (substring match)
 local listnguoicangift = {
     "minny_nxy","Hug0Hannah47","MrsAndrewkn0ll2005","Emmajolt2012","MrsGamerKnack2006",
     "NexusJill_Dancer","ArrowFlick21","XxCyberPixelChaosxX2","Z0e_Thunder2014YT","PandaFusionPow3r",
