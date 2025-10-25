@@ -10,7 +10,7 @@ local listnguoicangift = {
     "minny_nxy","Hug0Hannah47","MrsAndrewkn0ll2005","Emmajolt2012","MrsGamerKnack2006",
     "NexusJill_Dancer","ArrowFlick21","XxCyberPixelChaosxX2","Z0e_Thunder2014YT","PandaFusionPow3r",
     "XxPaisleySaberxX2023","SamuelHawkLucky20191","L3g3ndCraftPrimal","XxSt3althN3onxX2005",
-    "XxHeroSparkOmegaxX20","Cooki3Alpha2008",
+    "XxHeroSparkOmegaxX20","Cooki3Alpha2008", "Tig3rTurbo200854","EliHyperUltra","BlizzardBaneTurbo70","XxMinerMoonxX2006","Jaxon_Blizzard2010",
 }
 local MIN_STOCK_AFTER_GIFT = 1         -- <-- change threshold here
 local REPLICATION_WAIT = 0.75          -- wait after gifting for inventory to replicate
