@@ -1,3 +1,7 @@
+if not game:IsLoaded() then
+    repeat game.Loaded:Wait() until game:IsLoaded()
+end
+wait(10)
 _G.Config = {
 	["FPSCap"] = 20,
 	["WhiteScreen"] = false,
