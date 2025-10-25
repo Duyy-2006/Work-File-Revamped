@@ -5,22 +5,16 @@ end
 task.wait(5)
 
 -- // Config
-local listcangift = { "Dragon Cannelloni",
-    "Arminini Bodybuilderini",
-    "Bredda Ratto",
-    "Squalo Cavallo",
-    "Gattolini Owlini",
-    "Hotspotini Burrito",
-    "Wardenelli Brickatoni",
-    "Rhino Toasterino",
-    "Blueberrinni Octopussini",
-    "Los Tralaleritos",
-    "Brri Brri Bicus Dicus Bombicus",
-    "Crazylone Pizaione",
-    "Garamararam",
-    "Pot Hotspot",
-    "La Tomatoro",
-    "Los Sekolitos",} -- watched item names (substring match)
+local listcangift = {
+  "Arminini Bodybuilderini","Bredda Ratto","Cerberinno Hotdoggino","Chef Crabacadabra",
+  "Dragon Cannelloni","Elefante Formaggio","Gattolini Owlini","Hotspotini Burrito",
+  "Mr Croissantiago","Ospedale","Rhino Toasterino","Snailini Discozini","Squalo Cavallo",
+  "Strawberry Camaleonte","Tung Tung Tung Sahur","Wardenelli Brickatoni","Bangello",
+  "Blueberrinni Octopussini","Brri Brri Bicus Dicus Bombicus","Controllazzo",
+  "Crazylone Pizaione","El Tacorito","Garamararam","La Tomatoro","Los Mr Carrotitos",
+  "Los Sekolitos","Los Tralaleritos","Meowtronzio","Meowzio Sushini","Pepito Di Pollo",
+  "Pot Hotspot","Rexosaurus Hatcherini"
+}
 local listnguoicangift = {
     "minny_nxy","Hug0Hannah47","MrsAndrewkn0ll2005","Emmajolt2012","MrsGamerKnack2006",
     "NexusJill_Dancer","ArrowFlick21","XxCyberPixelChaosxX2","Z0e_Thunder2014YT","PandaFusionPow3r",
