@@ -1,5 +1,5 @@
 _G.Config = {
-	["FPSCap"] = 15,
+	["FPSCap"] = 20,
 	["WhiteScreen"] = false,
 	["BuyLuck"] = true,
 	["AutoSell"] = {
@@ -24,7 +24,7 @@ _G.Config = {
 		["Main"] = {
 			"Stone Rod", -- Stone Rod
 			"Wildflower Rod",
-			"Midas Rod",
+			-- "Midas Rod",
 			"Carrot Rod", -- Carrot Rod
 			"Luminescent Oath",
 			"Great Rod of Oscar",
