@@ -1,4 +1,4 @@
-setfpscap(15)
+setfpscap(3)
 script_key="peomExdejHELkiXOGIEhBvWHKzJUhoNv";
 getgenv().CONFIG = getgenv().CONFIG or {}
 getgenv().CONFIG.WEBHOOK_URL = "" -- replace with your webhook url

@@ -1,0 +1,21 @@
+local player = game:GetService("Players").LocalPlayer
+local rep = game:GetService("ReplicatedStorage")
+local remote = rep:WaitForChild("Remotes"):WaitForChild("FavoriteItem")
+
+for _, v in pairs(player.PlayerGui.BackpackGui.Backpack.Hotbar:GetChildren()) do
+	if v:FindFirstChild("HeartIcon") then
+		local id = v:GetAttribute("ID")
+		if id then
+			remote:FireServer(id)
+		end
+	end
+end
+
+for _, v in pairs(player.PlayerGui.BackpackGui.Backpack.Inventory.ScrollingFrame.UIGridFrame:GetChildren()) do
+	if v:FindFirstChild("HeartIcon") then
+		local id = v:GetAttribute("ID")
+		if id then
+			remote:FireServer(id)
+		end
+	end
+end
