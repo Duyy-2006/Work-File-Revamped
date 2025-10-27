@@ -2,110 +2,155 @@ if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
 wait(10)
-_G.Config = {
-	["FPSCap"] = 20,
-	["WhiteScreen"] = false,
-	["BuyLuck"] = true,
-	["AutoSell"] = {
-		["Delay"] = 10, -- Seconds
-		["Enable"] = true,
-		["Rarity"] = {
-			["Event"] = true,
-			["Mythical"] = true,
-			["Legendary"] = true,
-			["Exotic"] = true -- recommend to enable it
-		}
-	},
-	["DailyShop"] = {
-        ["Buy"] = true,
-        ["Items"] = {
-            "Exalted Relic",
-            "Enchant Relic",
-            "Aurora Totem"
+local Level_Farm = CFrame.new(1374.36963, -602.399231, 2337.11328, 0.836481154, -9.18514473e-08, -0.547995687, 3.76509632e-08, 1, -1.10141599e-07, 0.547995687, 7.14988104e-08, 0.836481154)
+_G.Settings = _G.Settings or {
+    ["DefaultPosition"] = Level_Farm,
+    ["AfkCheckTime"] = 30, -- Seconds
+    ["AfkFix"] = "Rejoin", -- Rejoin, Reset
+    ["EquipRod"] = "Auto", -- Trident Rod, Destiny Rod,... Rod
+    ["InstantFishing"] = true,
+    ["Return to Sea1"] = {
+        ["Obtained All Rods"] = true,
+    },
+    ["SellFish"] = {
+        ["SellDelay"] = 120, -- Seconds
+        ["Enable"] = true,
+        ["Method"] = {
+            ["Event"] = true,
+            ["Enchant"] = false,
+            ["Mythical"] = true,
+            ["Legendary"] = true,
+            ["Exotic"] = true -- recommend to enable it
         }
     },
-	['Rod'] = {
-		["Main"] = {
-			"Stone Rod", -- Stone Rod
-			"Wildflower Rod",
-			-- "Midas Rod",
-			"Carrot Rod", -- Carrot Rod
-			"Luminescent Oath",
-			"Great Rod of Oscar",
-		},
-		["Secondary"] = {
-			"Fischer's Rod", "Ethereal Prism Rod", "Cerulean Fang Rod",
-			"Aurora Rod", "Tempest Rod", "Abyssal Specter Rod",
-			"Destiny Rod", "Challenger's Rod", "Rod Of The Zenith",
-			"Challenger's Rod", "Nocturnal Rod", "Kings Rod",
-			"Trident Rod", "Poseidon Rod", "Champions Rod",
-			"Volcanic Rod", "Summit Rod", "Training Rod",
-			"Fast Rod", "Steady Rod", "Nocturnal Rod",
-			"Precision Rod", "Depthseeker Rod", "Carrot Rod",
-			"Wisdom Rod", "Vocanic Rod", "Voyager Rod",
-			"Riptide Rod", "Seasons Rod", "Rainbow Cluster Rod",
-			"The Lost Rod", "The Boom Ball", "Scarlet Spincaster Rod",
-			"Zeus Rod", "Kraken Rod", "Leviathan's Fang Rod",
-			"Great Rod of Oscar", "Celestial Rod", "Rod Of The Eternal King",
-			"Rod Of The Forgotten Fang", "Spiritbinder", "Evil Pitchfork",
-			"Elder Mossripper", "Plastic Rod", "Carbon Rod",
-			"Long Rod", "Lucky Rod", "Fortune Rod",
-			"Rapid Rod", "Magnet Rod", "Mythical Rod",
-			"Midas Rod", "Scurvy Rod", "Stone Rod",
-			"Phoenix Rod", "Arctic Rod", "Crystalized Rod",
-			"Ice Warpers Rod", "Avalanche Rod", "Stone Rod",
+    ['Rod'] = {
+        -- Necessary Rods: Rods that are required or essential for the gameplay
+        Necessary_Rods = {
+            "Reinforced Rod",
+            "Depthseeker Rod",
+            "Carrot Rod",
+            -- "Kraken Rod",
+            "Zeus Rod",
 
-			"Wildflower Rod", "Firefly Rod", "Frog Rod",
-			"Azure Of Lagoon", "Free Spirit Rod", "Verdant Shear Rod",
-			"Great Dreamer Rod", "Wicked Fang Rod"
-		},
-	},	
-	["Enchant"] = {
-		["Enabled"] = true,
-		["Rod"] = {
-			["Great Rod of Oscar"] = {
-				["Enchant Relic"] = {
-					LevelFarm = {"Clever"},
-					CashFarm = {"Clever"},
-				},
-				["Cosmic Relic"] = {
-					LevelFarm = {"Wise"},
-					CashFarm = {"Sea Prince"},
-				},
-			},
-			["Luminescent Oath"] = {
-				["Enchant Relic"] = {
-					LevelFarm = {"Clever", "Insight", "Sea King"},
-					CashFarm = {"Clever", "Insight", "Sea King"},
-				},
-				["Cosmic Relic"] = {
-					LevelFarm = {"Wise"},
-					CashFarm = {"Sea Prince"},
-				},
-			}
-		},
-	},
-	["Totems"] = {
-		["Enabled"] = true,
-		["ActivationLevel"] = 300,
-	
-		["DayTotem"] = "Sundial Totem",
-		["NightTotem"] = "Aurora Totem",
-	
-		["AutoPurchase"] = true,
-		["PurchaseLimit"] = {
-			["Day"] = 1,
-			["Night"] = 1,
-		},
-	},	
-	["RAM"] = {
-		    Port = 7963,
-			Password = "",
-			["Update Interval"] = 5,
-			["Reconnect Delay"] = 2,
-			["Max Retries"] = 10,
-			Subfix = " • "
-	},
+-- HIGHT PRIORITAY FOR UNPURCHASEABLE RODS
+
+            "No-Life Rod", 
+            "Seraphic Rod",
+
+            "Ethereal Prism Rod",
+        },
+    
+        -- Custom Rods: Special rods that can be customized after obtained all necessary rods.
+        Custom_Rods = {
+            "Aurora Rod",
+            "Tempest Rod",
+            "Abyssal Specter Rod",
+            "Destiny Rod",
+            "Challenger's Rod",
+            "Rod Of The Zenith",
+            "Challenger's Rod",
+            "Nocturnal Rod",
+            "Kings Rod",
+            "Trident Rod",
+            "Poseidon Rod",
+            "Champions Rod",
+            "Volcanic Rod",
+            "Summit Rod",
+            "Training Rod",
+            "Plastic Rod",
+            "Carbon Rod",
+            "Long Rod",
+            "Lucky Rod",
+            "Fortune Rod",
+            "Rapid Rod",
+            "Magnet Rod",
+            "Mythical Rod",
+            "Midas Rod",
+            "Scurvy Rod",
+            "Stone Rod",
+            "Phoenix Rod",
+            "Arctic Rod",
+            "Crystalized Rod",
+            "Ice Warpers Rod",
+            "Avalanche Rod",
+            "Stone Rod",
+
+            "Wildflower Rod",
+            "Firefly Rod",
+            "Frog Rod",
+            "Azure Of Lagoon",
+            "Free Spirit Rod", -- need bestinary 70%
+            "Verdant Shear Rod",
+            "Great Dreamer Rod",
+        },
+    
+        -- Puzzle Rods: Rods that will be available in the future (currently unavailable)
+        Puzzle_Rods = {
+            --["Heaven's Rod"] = 400, -- ( name, required level )
+        },
+    },	
+    ["Enchant"] = {
+        ["Enabled"] = true,            -- Enable or disable the enchantment system
+        ["Rod"] = {                    -- Specific enchantments for each rod
+            ["Depthseeker Rod"] = {
+                LevelFarm = {"Clever"}
+            },
+            ["Zeus Rod"] = {
+                LevelFarm = {"Clever"}
+            },
+            ["Kraken Rod"] = {
+                LevelFarm = {"Clever"}
+            },
+            ["Ethereal Prism Rod"] = {
+                LevelFarm = {"Hasty"},
+                CashFarm = {"Abyssal"},
+            },
+            ["Free Spirit Rod"] = {
+                LevelFarm = {"Clever"},
+            }
+        },
+    },
+    ["Totems"] = {
+        ["Enabled"] = true,         -- Enable or disable the totem system
+        ["ActivationLevel"] = 300,  -- Level required to activate totems
+    
+        ["DayTotem"] = "Sundial Totem",    -- Totem used during the day
+        ["NightTotem"] = "Aurora Totem",   -- Totem used during the night
+    
+        ["AutoPurchase"] = true,    -- Enable automatic totem purchasing
+        ["PurchaseLimit"] = {       -- Maximum allowed purchases per type
+            ["DayTotem"] = 1,
+            ["NightTotem"] = 1,
+        },
+    },	
+    ['EnabledFishingZones'] = true,
+    ["CastZone"] = {
+        ['OnLevel'] = 300,
+        ['Ignored_Aurora'] = true, -- skip farming level when aurora is active
+        ['Zones'] = {
+            "Forsaken Veil - Scylla",
+            "Lovestorm Eel",
+            "Orcas Pool",
+            "The Kraken Pool",
+            "Megalodon Default",
+            "The Depths - Serpent",
+            "Great White Shark",
+            "Great Hammerhead Shark",
+            "Whale Shark",
+
+            "Animal Pool",
+        },
+    },
+    ["RAM_Config"] = {
+        ['Port'] = 7963,
+        ['Password'] = "",
+        ['Update Interval'] = 5,
+        ['Subfix'] = " - ",
+        ['Rod Displayed'] = 10,
+    },
+    ['ShakeMode'] = "Fast", -- Fast, Fix bug
+    ["FpsBoost"] = false,
+    ["Black_Screen"] = false
 }
 script_key="wCmRvazXebTECcbSQYTceGhOAomLDcNj";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/16ddf2948fdb2a2791df613f2b969e7c.lua"))()
