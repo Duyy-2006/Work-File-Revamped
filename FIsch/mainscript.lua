@@ -148,9 +148,9 @@ _G.Settings = _G.Settings or {
         ['Subfix'] = " - ",
         ['Rod Displayed'] = 10,
     },
-    ['ShakeMode'] = "Fast", -- Fast, Fix bug
-    ["FpsBoost"] = false,
-    ["Black_Screen"] = false,
+    ['ShakeMode'] = "Fix bug", -- Fast, Fix bug
+    ["FpsBoost"] = true,
+    ["Black_Screen"] = true,
 }
 script_key="wCmRvazXebTECcbSQYTceGhOAomLDcNj";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/16ddf2948fdb2a2791df613f2b969e7c.lua"))()
