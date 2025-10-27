@@ -8,7 +8,7 @@ _G.Settings = _G.Settings or {
     ["AfkCheckTime"] = 30, -- Seconds
     ["AfkFix"] = "Rejoin", -- Rejoin, Reset
     ["EquipRod"] = "Auto", -- Trident Rod, Destiny Rod,... Rod
-    ["InstantFishing"] = true,
+    ["InstantFishing"] = false,
     ["Return to Sea1"] = {
         ["Obtained All Rods"] = true,
     },
@@ -148,7 +148,7 @@ _G.Settings = _G.Settings or {
         ['Subfix'] = " - ",
         ['Rod Displayed'] = 10,
     },
-    ['ShakeMode'] = "Fix bug", -- Fast, Fix bug
+    ['ShakeMode'] = "Fast", -- Fast, Fix bug
     ["FpsBoost"] = true,
     ["Black_Screen"] = true,
 }
