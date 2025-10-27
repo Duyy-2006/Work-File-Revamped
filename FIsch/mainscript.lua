@@ -150,7 +150,7 @@ _G.Settings = _G.Settings or {
     },
     ['ShakeMode'] = "Fast", -- Fast, Fix bug
     ["FpsBoost"] = false,
-    ["Black_Screen"] = false
+    ["Black_Screen"] = false,
 }
 script_key="wCmRvazXebTECcbSQYTceGhOAomLDcNj";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/16ddf2948fdb2a2791df613f2b969e7c.lua"))()
