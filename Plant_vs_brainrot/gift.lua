@@ -5,15 +5,8 @@ end
 task.wait(5)
 
 -- // Config
-local listcangift = {
-  "Arminini Bodybuilderini","Bredda Ratto","Cerberinno Hotdoggino","Chef Crabacadabra",
-  "Dragon Cannelloni","Elefante Formaggio","Gattolini Owlini","Hotspotini Burrito",
-  "Mr Croissantiago","Ospedale","Rhino Toasterino","Snailini Discozini","Squalo Cavallo",
-  "Strawberry Camaleonte","Tung Tung Tung Sahur","Wardenelli Brickatoni","Bangello",
-  "Blueberrinni Octopussini","Brri Brri Bicus Dicus Bombicus","Controllazzo",
-  "Crazylone Pizaione","El Tacorito","Garamararam","La Tomatoro","Los Mr Carrotitos",
-  "Los Sekolitos","Los Tralaleritos","Meowtronzio","Meowzio Sushini","Pepito Di Pollo",
-  "Pot Hotspot","Rexosaurus Hatcherini"
+local listcangift = { "Tomatrio", "Shroombino", "Mango", "
+King Limone",
 }
 local listnguoicangift = {
     "minny_nxy","Hug0Hannah47","MrsAndrewkn0ll2005","Emmajolt2012","MrsGamerKnack2006",
