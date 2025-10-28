@@ -2,7 +2,6 @@
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
-local type = "Gift"
 local TeleportService = game:GetService("TeleportService")
 local PlaceId         = game.PlaceId
 local JobId           = game.JobId
