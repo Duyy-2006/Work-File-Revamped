@@ -5,7 +5,7 @@ end
 task.wait(5)
 
 -- // Config
-local listcangift = { "Tomatrio", "Shroombino", "Mango", "King Limone",
+local listcangift = {"King Limone",
 }
 local listnguoicangift = {
     "minny_nxy","Hug0Hannah47","MrsAndrewkn0ll2005","Emmajolt2012","MrsGamerKnack2006",
