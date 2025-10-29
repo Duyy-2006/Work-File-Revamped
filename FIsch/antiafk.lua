@@ -14,6 +14,6 @@ while true do
     task.wait(300)
     local second = level.Value
     if first ~= second then
-        player:Kick("Error")
+        game:GetService("TeleportService"):Teleport(game.PlaceId)
     end 
 end
