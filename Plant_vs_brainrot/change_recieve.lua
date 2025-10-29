@@ -1,22 +1,7 @@
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
-local TreeTable = { "Dragon Cannelloni",
-    "Arminini Bodybuilderini",
-    "Bredda Ratto",
-    "Squalo Cavallo",
-    "Gattolini Owlini",
-    "Hotspotini Burrito",
-    "Wardenelli Brickatoni",
-    "Rhino Toasterino",
-    "Blueberrinni Octopussini",
-    "Los Tralaleritos",
-    "Brri Brri Bicus Dicus Bombicus",
-    "Crazylone Pizaione",
-    "Garamararam",
-    "Pot Hotspot",
-    "La Tomatoro",
-    "Los Sekolitos",} 
+local TreeTable = {"Tomatrio","Shroombino","King Limone","Mango",} 
 
 
 
