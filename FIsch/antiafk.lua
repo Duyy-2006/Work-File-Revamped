@@ -11,11 +11,7 @@ print(level.Value)
 
 while true do
     local first = level.Value
-    if first > 1000 then 
-        task.wait(600)
-    else 
-        task.wait(300)
-    end
+    task.wait(300)
     local second = level.Value
     if first == second then
         game:GetService("TeleportService"):Teleport(game.PlaceId)
