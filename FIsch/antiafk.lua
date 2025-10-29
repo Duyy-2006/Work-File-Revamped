@@ -12,7 +12,7 @@ print(level.Value)
 while true do
     local first = level.Value
     if first > 1000 then
-        task.wait(600)
+        task.wait(1800)
     else 
         task.wait(300)
     end
