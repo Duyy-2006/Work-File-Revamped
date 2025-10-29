@@ -17,7 +17,7 @@ while true do
         task.wait(300)
     end
     local second = level.Value
-    if first ~= second then
+    if first == second then
         game:GetService("TeleportService"):Teleport(game.PlaceId)
     end 
 end
