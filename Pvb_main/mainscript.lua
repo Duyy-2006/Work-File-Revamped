@@ -3,7 +3,6 @@ if not game:IsLoaded() then
 end
 wait(5)
 local keys = {  -- Add as many key
-    "DQOpHAFDdWyHPtccsfRSKloiQtuvlmQh", 
     "VCxgpmklByxYlEOOVpIcITcmFdDIpsfQ", 
 }
 math.randomseed(os.time())
