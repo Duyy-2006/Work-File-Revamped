@@ -1,5 +1,6 @@
 if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
-
+wait(5)
+setfpscap(10)
 _G.RAM =  {
     ["Roblox Account Manager"] = {
         ["Auto Sending"] = false,
