@@ -1,17 +1,12 @@
-script_key = "eeLluisnaQwCWznUGhHiZjNjnktVHIAp"
-getgenv().TLfig = {
-    AutoFarm  = true,
-    Modefarm  = "",
-    FpsLock   = {true, 10},
-    Webhook   = {
-        Enabled = true,
-        URL = "",
-        Rarity = { Common = false, Uncommon = false, Rare = true, Legendary = true, Godly = true }
-    }
+script_key="HFPAUALdlgXSXRlcDYGlHtpXHAJePzvS";
+getgenv().Config = {
+    HUDHopMinGain = 60     -- Candies                    -- Minimum candy collected (supports "HUDHopWindowSec") 
+    HUDHopWindowSec = 600  -- Second                     -- Minimum farming time (supports "HUDHopMinGain") 
+    FPSCap     = 5,                                      -- Best fps optimized, can change if you want! (recommend 5 fps+)
+    Mode       = "",                                     -- "battlepass" or "crate"
+    OpenDelay  = 2.5,      -- Second                     -- Crate Open Delay
+    Webhook    = "your webhook here",                    -- Crate notify
+    DiscordID  = "put your discord id here"              -- Crate notify (need metion)
 }
-repeat
-    local success, err = pcall(function() 
-        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/7c742b62fa7b1eafb8b5e8b25a07f0ef.lua"))()
-        task.wait(20)
-    end)
-until success
+-- USE THE CORRECT LOADSTRING FOR YOUR NUMBER OF TABS! PICK ONLY ONE LOADSTRING!
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fbdaaeddcf4c27445764a37ba601f35a.lua"))() -- 120 TABS
