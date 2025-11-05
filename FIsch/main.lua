@@ -2,7 +2,6 @@
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
-local type = "Gift"
 local TeleportService = game:GetService("TeleportService")
 local PlaceId         = game.PlaceId
 local JobId           = game.JobId
@@ -14,6 +13,7 @@ local urls= {
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/mainscript.lua",
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/addfriend.lua",
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/track.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/antiafk.lua",
 }
 
 for _, url in ipairs(urls) do
