@@ -3,34 +3,21 @@ if not game:IsLoaded() then
 end
 wait(5)
 setfpscap(2)
-task.spawn(function()
-    script_key="dCsrDWdsslpaMkVGHZmrKbKOdfPkMXCG";
-    getgenv().Config = {
-        ["PetAMountToBuy"] = "0", -- can be 999
-        ["WhatCategory"] = "pets", -- gifts if WhatCategory = "" then = pets
-        ["PetRemoteToBuy"] = "retired_egg", -- exemple for gifts halloween_2025_spider_box
+script_key="dCsrDWdsslpaMkVGHZmrKbKOdfPkMXCG";
+getgenv().Config = {
+    ["PetAMountToBuy"] = "0", -- can be 999
+    ["WhatCategory"] = "", -- gifts if WhatCategory = "" then = pets
+    ["PetRemoteToBuy"] = "", -- exemple for gifts halloween_2025_spider_box
 
-        ["PetFarmAutoSwitchFullGrown"] = false,
-        ["PetFarmActive"] = false, -- farm potion
-        ["EggFarmActive"] = false, -- farm egg, if no more eggs will farm potion
-
-        ["NeonMegaFarm"] = false,
-        ["BuyEgg"] = "retired_egg", -- only work with NeonMegaFarm, will loop buy this egg when enough bucks
-        
-        ["AutoReleasePet"] = false,
-        ["RecycleWebhook"] = "",
-        ["common"] = false,
-        ["uncommon"] = false,
-        ["rare"] = false,
-        ["ultra_rare"] = false,
-
-        ["HideUselessGui"] = true,
-        ["Blur_username"] = true,
-        ["Blazing_Lion_Log"] = false,
-        ["DiscordId"] = "123456",
-        ["Webhook"] = "",
-        ["LegendaryWebhook"] = "",
-        ["NeonMegaWebhook"] = "",
-    }
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/66567bfd337b57eb059b58dbe1badb89.lua"))()
-end)
+    ["PetFarmAutoSwitchFullGrown"] = false,
+    ["PetFarmActive"] = false,
+    ["LitePetFarmActive"] = false,
+    ["EggFarmActive"] = false,
+    
+    ["HideUselessGui"] = true,
+    ["Blur_username"] = true,
+    ["Blazing_Lion_Log"] = false,
+    ["DiscordId"] = "123456",
+    ["Webhook"] = "https://discord.com/api/webhooks/967820762734030899/lPujX41Md70Per8IZyU6jwMFHpvl-_5MFqQSzguUMGYZep1a_t0HHYzTFTJ8gPBolGrP",
+}
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/66567bfd337b57eb059b58dbe1badb89.lua"))()
