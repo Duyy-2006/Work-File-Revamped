@@ -11,7 +11,6 @@ local player      = game:GetService("Players").LocalPlayer
 
 local urls= {
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/mainscript.lua",
-        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/addfriend.lua",
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/track.lua",
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/FIsch/antiafk.lua",
 }
