@@ -2,6 +2,7 @@ if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
 wait(5)
+setfpscap(2)
 task.spawn(function()
     script_key="dCsrDWdsslpaMkVGHZmrKbKOdfPkMXCG";
     getgenv().Config = {
@@ -33,5 +34,3 @@ task.spawn(function()
     }
     loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/66567bfd337b57eb059b58dbe1badb89.lua"))()
 end)
-setfpscap(2)
-loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/66567bfd337b57eb059b58dbe1badb89.lua"))()
