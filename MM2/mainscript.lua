@@ -1,3 +1,7 @@
+if not game:IsLoaded() then
+    repeat game.Loaded:Wait() until game:IsLoaded()
+end
+wait(5)
 script_key="HFPAUALdlgXSXRlcDYGlHtpXHAJePzvS";
 getgenv().Config = {
     HUDHopMinGain = 60     -- Candies                    -- Minimum candy collected (supports "HUDHopWindowSec") 
