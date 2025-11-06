@@ -1,39 +1,23 @@
--- Ensure the game is fully loaded before running anything
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
+
 wait(5)
-local TeleportService = game:GetService("TeleportService")
-local PlaceId         = game.PlaceId
-local JobId           = game.JobId
-local player      = game:GetService("Players").LocalPlayer
+setfpscap(2)
 
-local urls= {
-    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/MM2/mainscript.lua",
-}
-for _, url in ipairs(urls) do
-    local ok, chunkOrErr = pcall(game.HttpGet, game, url)
-    if not ok then
-        player:Kick("Error")
-        return
-    end
+task.spawn(function()
+    script_key = "HFPAUALdlgXSXRlcDYGlHtpXHAJePzvS";
 
-    local fn, loadErr = loadstring(chunkOrErr)
-    if not fn then
-        player:Kick("Error")
-        return
-    end
+    getgenv().Config = {
+        HUDHopMinGain   = 60     -- Candies                    -- Minimum candy collected (supports "HUDHopWindowSec") 
+        HUDHopWindowSec = 600    -- Second                     -- Minimum farming time (supports "HUDHopMinGain") 
+        FPSCap          = 5,                                  -- Best fps optimized, can change if you want! (recommend 5 fps+)
+        Mode            = "",                                 -- "battlepass" or "crate"
+        OpenDelay       = 2.5,    -- Second                    -- Crate Open Delay
+        Webhook         = "your webhook here",                -- Crate notify
+        DiscordID       = "put your discord id here"          -- Crate notify (need metion)
+    }
 
-    -- Run each module in its own thread so a blocking loop inside one
-    -- won't stop the others from loading.
-    task.spawn(function()
-        local success, runErr = pcall(fn)
-        if not success then
-            player:Kick("Error")
-        end
-    end)
-end
-
-
-
-
+    -- USE THE CORRECT LOADSTRING FOR YOUR NUMBER OF TABS! PICK ONLY ONE LOADSTRING!
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fbdaaeddcf4c27445764a37ba601f35a.lua"))() -- 120 TABS
+end)
