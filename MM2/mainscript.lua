@@ -3,10 +3,10 @@ if not game:IsLoaded() then
 end
 
 wait(5)
-setfpscap(2)
+setfpscap(5)
 
 task.spawn(function()
-    script_key = "HFPAUALdlgXSXRlcDYGlHtpXHAJePzvS";
+    script_key = "BVpLUEgYVUXtqprzrfKgxVRTqrUtAlnm";
 
     getgenv().Config = {
         HUDHopMinGain   = 60,     -- Candies                    -- Minimum candy collected (supports "HUDHopWindowSec") 
