@@ -9,7 +9,6 @@ local JobId           = game.JobId
 local player      = game:GetService("Players").LocalPlayer
 
 local urls= {
-    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/MM2/mainscript.lua",
     "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/MM2/trackstats.lua",
 }
 for _, url in ipairs(urls) do
@@ -34,4 +33,5 @@ for _, url in ipairs(urls) do
         end
     end)
 end
+
 
