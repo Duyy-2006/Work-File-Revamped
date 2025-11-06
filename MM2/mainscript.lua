@@ -9,8 +9,8 @@ task.spawn(function()
     script_key = "HFPAUALdlgXSXRlcDYGlHtpXHAJePzvS";
 
     getgenv().Config = {
-        HUDHopMinGain   = 60     -- Candies                    -- Minimum candy collected (supports "HUDHopWindowSec") 
-        HUDHopWindowSec = 600    -- Second                     -- Minimum farming time (supports "HUDHopMinGain") 
+        HUDHopMinGain   = 60,     -- Candies                    -- Minimum candy collected (supports "HUDHopWindowSec") 
+        HUDHopWindowSec = 600,    -- Second                     -- Minimum farming time (supports "HUDHopMinGain") 
         FPSCap          = 5,                                  -- Best fps optimized, can change if you want! (recommend 5 fps+)
         Mode            = "",                                 -- "battlepass" or "crate"
         OpenDelay       = 2.5,    -- Second                    -- Crate Open Delay
