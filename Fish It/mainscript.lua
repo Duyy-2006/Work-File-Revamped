@@ -79,5 +79,5 @@ _G.Config =  {
         },
     },
 }
-script_key="YvYILBVUliSkoaFSDBbUwpmKnbiTIXUW";
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1c0bde26fd6784a7ad9eae18839833d8.lua"))()
+script_key="wCmRvazXebTECcbSQYTceGhOAomLDcNj";
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/Muhaha/refs/heads/main/Loader.lua"))()
