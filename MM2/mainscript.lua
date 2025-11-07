@@ -19,5 +19,5 @@ task.spawn(function()
     }
 
     -- USE THE CORRECT LOADSTRING FOR YOUR NUMBER OF TABS! PICK ONLY ONE LOADSTRING!
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fbdaaeddcf4c27445764a37ba601f35a.lua"))() -- 120 TABS
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/415a39cc0109e5b58e77746da4f782d4.lua"))() -- 300 TABS
 end)
