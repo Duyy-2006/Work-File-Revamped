@@ -1,6 +1,8 @@
 if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
 wait(5)
 setfpscap(10)
+task.spawn(function()
+
 _G.RAM =  {
     ["Roblox Account Manager"] = {
         ["Auto Sending"] = false,
@@ -81,3 +83,6 @@ _G.Config =  {
 }
 script_key="wCmRvazXebTECcbSQYTceGhOAomLDcNj";
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/Muhaha/refs/heads/main/Loader.lua"))()
+wait(20)
+end)
+
