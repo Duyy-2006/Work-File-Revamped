@@ -83,6 +83,6 @@ _G.Config =  {
 }
 script_key="wCmRvazXebTECcbSQYTceGhOAomLDcNj";
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/Muhaha/refs/heads/main/Loader.lua"))()
-wait(20)
+wait(5)
 end)
 
