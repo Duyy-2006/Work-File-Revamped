@@ -1,7 +1,7 @@
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
-local TreeTable = {"King Limone",} 
+local TreeTable = {"King Limone", "Tomatrio", "Shroombino", "Mango", } 
 
 
 
