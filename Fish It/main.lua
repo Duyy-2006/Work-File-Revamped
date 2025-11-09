@@ -10,18 +10,17 @@ local player      = game:GetService("Players").LocalPlayer
 
 local urls= {
     "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Fish%20It/mainscript.lua",
-    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Fish%20It/trackstats.lua",
-}
+    }
 for _, url in ipairs(urls) do
     local ok, chunkOrErr = pcall(game.HttpGet, game, url)
     if not ok then
-        --player:Kick("Error")
+        player:Kick("Error")
         return
     end
 
     local fn, loadErr = loadstring(chunkOrErr)
     if not fn then
-        --player:Kick("Error")
+        player:Kick("Error")
         return
     end
 
@@ -30,7 +29,7 @@ for _, url in ipairs(urls) do
     task.spawn(function()
         local success, runErr = pcall(fn)
         if not success then
-            --player:Kick("Error")
+            player:Kick("Error")
         end
     end)
 end
