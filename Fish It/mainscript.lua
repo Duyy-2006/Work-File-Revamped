@@ -2,72 +2,24 @@ if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
 wait(5)
 setfpscap(10)
 task.spawn(function()
-
-_G.RAM =  {
-    ["Roblox Account Manager"] = {
-        ["Auto Sending"] = false,
-        ["Blacklist Rod"] = {"Starter Rod","Luck Rod","Ice Rod","Lucky Rod","Midnight Rod"},
-        ["Delay Log"] = 5,
-    },
-}
-
-_G.Logic =  {
-    ["Data"] = {
-        ["Ghostfinn Rod"] = {
-            ["Allow Doing"] = true,
-            ["Doing After"] = {
-                ["Level"] = 25, -- // Type ~ [ Requirement Level ]
-                ["Rod"] = "Chrome Rod" -- // Type ~ [ Requirement Rod ]
-            },
-        }, 
-        ["Element Rod"] = { 
-            ["Allow Doing"] = true,
-            ["Doing After"] = {
-                ["Level"] = 50, -- // Type ~ [ Requirement Level ]
-                ["Rod"] = "Ghostfinn Rod" -- // Type ~ [ Requirement Rod ]
-            },
-        }, 
-        ["Main Location"] = { -- // Type ~ [ CFrame ] Kohana Volcano
-           ["Data CFrame"] = CFrame.new(3188.24805, -1302.85486, 1401.64124, 0.776080966, -3.61365338e-08, -0.630633295, -1.63238152e-08, 1, -7.73906734e-08, 0.630633295, 7.03557674e-08, 0.776080966),
-
+getgenv().ConfigsKaitun = {
+    -- [[ setclipboard(tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)) ]] -- For Copy CFrame
+    Settings = {
+        ["Perfect Catch"] = 100, -- < String > Style Perfect Catch [ Percent ]
+        ["Position Farming"] = {
+            ["Main Position"] = CFrame.new(-3733.08569, -135.074417, -1011.08331, -0.994064987, 1.32314657e-08, -0.108788066, 1.63132619e-08, 1, -2.7438448e-08, 0.108788066, -2.90502875e-08, -0.994064987), -- < CFrame > Main Position Fishing / Farm Money
         },
-    },
-}
-
-_G.Config =  {
-    ["Version"] = "Rewrite Version | 22/10/2025", 
-    ["Fishing"] = {
-        ["Selling"] = {
-            ["Loop Delay"] = 10,
-            ["Auto Sell"] = true,
+        ["Reducing Cpu Usage"] = {
+            ["Black Screen"] = true, -- < Boolean > Auto Open / Close Black Screen
+            ["FpsCap"] = 9999, -- < Number > Fps Lock
         },
-        ["Favorite"] = {
-            ["Allow Doing"] = true,
-            ["Favorite Type"] = {"Mythic", "SECRET"},
-        },
-        ["Disable 3d Render"] = false,
-        ["Anti Stuck"] = true,
-        ["Perfect Cast"] = true,
+        ["Favorite Setting"] = {
+            "Mythic", 
+            "SECRET"
+        }
     },
-    ["Web Hook"] = {
-        ["Link Webhook"] = "",
-        ["Auto Sending"] = false,
-        ["Loop Delay"] = 30,
-    },
-    ["Bobber"] = { 
-        ["Allow Purchase"] = true, 
-        ["Allow Equip"] = true,
-        ["Bobber List"] = {
-            "Midnight Bait",
-            "Chroma Bait",
-            "Corrupt Bait",
-            "Dark Matter Bait",
-        },
-    },
-    ["Fishing Rod"] = { 
-        ["Allow Purchase"] = true, 
-        ["Allow Equip"] = true,
-        ["Rod List"] = {
+    ["Custom Buying"] = {
+        ["Buying Rods"] = {
             "Luck Rod",
             "Ice Rod",
             "Lucky Rod",
@@ -79,10 +31,39 @@ _G.Config =  {
             "Ares Rod",
             "Angler Rod",
         },
+        ["Buying Baits"] = {
+            "Midnight Bait",
+            "Chroma Bait",
+            "Corrupt Bait",
+            "Dark Matter Bait",
+        },
     },
+    ["Doing Quest"] = {
+        ["Ghostfinn Rod"] = {
+            ["Allow Doing"] = true,
+            ["Doing After"] = {
+                ["Level"] = 100, -- < Number > Level Needed
+                ["Rod"] = "Astral Rod" -- < String > Rod Needed
+            },
+        },
+        ["Element Rod"] = {
+            ["Allow Doing"] = true,
+            ["Doing After"] = {
+                ["Level"] = 200, -- < Number > Level Needed
+                ["Rod"] = "Ghostfinn Rod" -- < String > Rod Needed
+            },
+        },
+        ["Aura Boat"] = {
+            ["Allow Doing"] = true,
+            ["Doing After"] = {
+                ["Level"] = 300, -- < Number > Level Needed
+                ["Rod"] = "Ghostfinn Rod" -- < String > Rod Needed
+            },
+        }
+    }
 }
-script_key="wCmRvazXebTECcbSQYTceGhOAomLDcNj";
-loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/Muhaha/refs/heads/main/Loader.lua"))()
+License = "qdnzuDLdqGisOkLZhdML05nvtOAgYrXP"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/x2neptunereal/Normal/refs/heads/main/main.luau"))()
 wait(5)
 end)
 
