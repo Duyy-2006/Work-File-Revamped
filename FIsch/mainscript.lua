@@ -212,7 +212,5 @@ _G.Loader = {
 		}, 
 	},
 } 
-
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bd6d7403f1f7b756b09fff8ab75369ed.lua"))()
 script_key="iITAcWAZWwavNyBVbJcrtmwfgMkHFjOX";
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/7cc6c928be31fd9f4054d5e7354270e1.lua"))()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bd6d7403f1f7b756b09fff8ab75369ed.lua"))()
