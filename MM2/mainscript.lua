@@ -4,7 +4,7 @@ end
 
 wait(5)
 
-script_key = "eeLluisnaQwCWznUGhHiZjNjnktVHIAp"
+script_key = "YQrTRFDloJTXoXpwlzptvfphhEDRFJqj"
 getgenv().TLfig = {
     AutoFarm  = true,
     Modefarm  = "",
