@@ -29,5 +29,5 @@ _G.VanguardSettings = {
         }
     }
 }
-script_key="MWRzkqkBFehZPykSXInTXiIeQkEgyIzY";
+script_key="fzBRbUpSYXumdyRUZBxmXyiUOcpTUPqR";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6756a57cd51293c409a1f7627cba5572.lua"))()
