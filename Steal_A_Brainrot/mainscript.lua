@@ -1,20 +1,31 @@
-setfpscap(3)
-script_key="peomExdejHELkiXOGIEhBvWHKzJUhoNv";
-getgenv().CONFIG = getgenv().CONFIG or {}
-getgenv().CONFIG.WEBHOOK_URL = "" -- replace with your webhook url
-getgenv().CONFIG.TAG_USER_ID = "" -- replace with your Discord ID
-getgenv().CONFIG.WEBHOOK_RARITIES = {
-    Secret = true,
-    ["Brainrot God"] = false,
-    Legendary = false,
-    Mythic = false,
-    Epic = false,
-    Rare = false,
-    Common = false
-} --select rarity to send webhook
-getgenv().CONFIG.PROTECTED_RARITIES = getgenv().CONFIG.PROTECTED_RARITIES or {
-    Secret = true,
-    ["Brainrot God"] = false
-}--Select to protect rarity (for example, if you choose secret, it will not delete the pet secret)
-getgenv().CONFIG.DEBUG = true  -- print to console what the script is doing
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/7c36bcea219a16a41005699607d681d1.lua"))()
+script_key = "eeLluisnaQwCWznUGhHiZjNjnktVHIAp"
+getgenv().TLHUB = getgenv().TLHUB or {
+    SettingFarm = {
+        DupePrivateServer = true,
+        BoostFPS = true,
+        FpsLock = { true, 20 },
+        ProtectRarityAnimals = {"Secret","Brainrot God"},
+        AutoRebirth = true,
+        AutoBuy = true,
+        AutoSellAnimals = true,
+        AutoBuyAnimalsToRebirth = true,
+        LockPriority = true,
+        AutoLock = true,
+        CollectInterval = 20,
+        KickWhenRebirth = true,
+        OpenLuckyBlock = false,
+    },
+    Rarity = { "Common","Rare","Epic","Legendary","Mythic","Admin","Brainrot God","Secret" },
+    ["Buy Lucky Block"] = {
+        "Admin Lucky Block",
+        "Secret Lucky Block",
+        "Los Lucky Blocks"
+    },
+    Webhook = {
+        Enabled = true,
+        WebhookURL = "url",
+        WebhookSettings = { ModeSend = "Edit", PerSec = 20 },
+        BuyNotification = { Enabled = true, PingEveryone = true, Rarity = {"Secret","Brainrot God"} }
+    },
+}
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/c6b1d1e91b90e41732abcbe3cd5697d0.lua"))()
