@@ -1,0 +1,1 @@
+_G.Config = { UserID = "a7916749-0080-4d07-b4aa-3c4cb61484a1", discord_id = "935143471243726858" , Note = "PetFarm", } loadstring(game:HttpGet("https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/adoptmee"))()
