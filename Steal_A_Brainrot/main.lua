@@ -12,6 +12,7 @@ local urls= {
     "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Steal_A_Brainrot/antikick.lua",
     "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Steal_A_Brainrot/mainscript.lua",
     "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Steal_A_Brainrot/trackstats.lua",
+    "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Steal_A_Brainrot/kick.lua",
 }
 for _, url in ipairs(urls) do
     local ok, chunkOrErr = pcall(game.HttpGet, game, url)
@@ -35,4 +36,5 @@ for _, url in ipairs(urls) do
         end
     end)
 end
+
 
