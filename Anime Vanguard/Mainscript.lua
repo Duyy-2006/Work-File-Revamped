@@ -1,6 +1,5 @@
 if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
 wait(3)
-setfpscap(10)
 _G.VanguardSettings = {
     ['ClaimDaily'] = true,
     ['ClaimQuests'] = true,
