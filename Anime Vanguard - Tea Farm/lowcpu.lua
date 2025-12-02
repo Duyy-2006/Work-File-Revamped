@@ -1,5 +1,7 @@
     game:GetService("RunService"):Set3dRenderingEnabled(false)
-    setfpscap(2)
+    if game.PlaceId == 18219125606 then
+        setfpscap(2)
+    end
     for i,v in next, workspace:GetDescendants() do
         pcall(function()
             v.Transparency = 1
