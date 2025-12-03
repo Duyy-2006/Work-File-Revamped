@@ -1,7 +1,7 @@
 local Level_Farm = CFrame.new(1374.36963, -602.399231, 2337.11328, 0.836481154, -9.18514473e-08, -0.547995687, 3.76509632e-08, 1, -1.10141599e-07, 0.547995687, 7.14988104e-08, 0.836481154)
 _G.Settings = _G.Settings or {
     ["DefaultPosition"] = Level_Farm,
-    ["AfkCheckTime"] = 30, -- Seconds
+    ["AfkCheckTime"] = 900, -- Seconds
     ["AfkFix"] = "Reset", -- Rejoin, Reset
     ["EquipRod"] = "Auto", -- Trident Rod, Destiny Rod,... Rod
     ["InstantFishing"] = true,
@@ -145,7 +145,7 @@ _G.Settings = _G.Settings or {
         ['Rod Displayed'] = 10,
     },
     ['ShakeMode'] = "Fast", -- Fast, Fix bug
-    ["FpsBoost"] = false,
+    ["FpsBoost"] = true,
     ["Black_Screen"] = true
 }
 
