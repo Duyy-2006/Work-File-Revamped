@@ -12,6 +12,7 @@ local player      = game:GetService("Players").LocalPlayer
 
 local urls= {
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Anime%20Vanguard%20-%20Tea%20Farm/Mainscript.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Anime%20Vanguard%20-%20Tea%20Farm/trakcstats.lua",
 }
 
 for _, url in ipairs(urls) do
