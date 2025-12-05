@@ -14,7 +14,7 @@ while true do
     if first > 1000 then
         task.wait(1800)
     else 
-        task.wait(300)
+        task.wait(600)
     end
     local second = level.Value
     if first == second then
