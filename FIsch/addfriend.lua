@@ -1,58 +1,67 @@
-repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer.Character 
-local Players = game:GetService("Players")
-local PlayersTable = {}
-local Count = 0 
+--// =====================================================
+--// Auto friend everyone in the current server (client)
+--// Synapse / executor friendly
+--// =====================================================
 
-local function addPlayer(player)
-    if player ~= Players.LocalPlayer then
-        table.insert(PlayersTable, player.Name)
+getgenv().AUTO_FRIEND_ALL = true  -- set to false + re-exec to stop
+
+local Players     = game:GetService("Players")
+local StarterGui  = game:GetService("StarterGui")
+
+-- Make sure the game + SetCore are ready
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+local function coreReady()
+    return pcall(function()
+        StarterGui:SetCore("ResetButtonCallback", nil)
+    end)
+end
+
+repeat task.wait(0.2) until coreReady()
+
+local LocalPlayer = Players.LocalPlayer or Players.PlayerAdded:Wait()
+local prompted = {}  -- [userId] = true once we already prompted
+
+--// Prompt Roblox's built-in friend request UI for a player
+local function promptFriend(player)
+    if not getgenv().AUTO_FRIEND_ALL then return end
+    if not player or player == LocalPlayer then return end
+    if prompted[player.UserId] then return end
+
+    local ok, err = pcall(function()
+        StarterGui:SetCore("PromptSendFriendRequest", player)
+    end)
+
+    if ok then
+        prompted[player.UserId] = true
+        print("[AutoFriend] Prompted friend request to:", player.Name)
+    else
+        warn("[AutoFriend] Failed to prompt for", player.Name, "=>", err)
     end
 end
 
-local function removePlayer(player)
-    for i, v in pairs(PlayersTable) do
-        if v == player.Name then
-            table.remove(PlayersTable, i)
-            break
-        end
-    end
+--// Prompt for everyone currently in the server
+for _, plr in ipairs(Players:GetPlayers()) do
+    promptFriend(plr)
 end
 
-Players.PlayerAdded:Connect(addPlayer)
+--// Prompt for any new players that join
+Players.PlayerAdded:Connect(function(plr)
+    task.wait(1) -- small delay just in case
+    promptFriend(plr)
+end)
 
-Players.PlayerRemoving:Connect(removePlayer)
-
-print('============== << STARTING ADD ALL TO TABLE >> ==============')
-for _, player in pairs(Players:GetPlayers()) do
-    addPlayer(player)
-end
-
-spawn(function()
-    print('============== << STARTING CHECK >> ==============')
-    while true do task.wait(5)
-        if #PlayersTable > 0 then
-            for i, playerName in pairs(PlayersTable) do
-                local player = Players:FindFirstChild(playerName)
-                if player then
-                    local success, err = pcall(function()
-                        game.StarterGui:SetCore("SendNotification", {
-                            Title = "Friend Request",
-                            Text = player.Name,
-                            Duration = 5
-                        })
-                        Players.LocalPlayer:RequestFriendship(player)
-                        task.wait(10) 
-                        Count += 1
-                        if Count >= 5 then
-                            table.remove(PlayersTable, i)
-                            Count = 0 
-                        end
-                    end)
-                    if not success then
-                        warn("error" .. tostring(err))
-                    end
-                end
-            end
-        end
+--// Optional: log when someone actually becomes your friend
+pcall(function()
+    local friendedBindable = StarterGui:GetCore("PlayerFriendedEvent")
+    if friendedBindable and friendedBindable.Event then
+        friendedBindable.Event:Connect(function(plr)
+            print("[AutoFriend] You are now friends with:", plr.Name, "(", plr.UserId, ")")
+        end)
     end
 end)
+
+print("[AutoFriend] Loaded. It will prompt friend requests for everyone in this server.")
+print("[AutoFriend] To stop, set getgenv().AUTO_FRIEND_ALL = false and re-execute.")
