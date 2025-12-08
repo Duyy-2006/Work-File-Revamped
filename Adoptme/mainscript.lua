@@ -8,7 +8,7 @@ task.spawn(function()
     getgenv().Config = {
         ["PetAMountToBuy"] = "0", -- can be 999
         ["WhatCategory"] = "", -- gifts if WhatCategory = "" then = pets
-        ["PetRemoteToBuy"] = "aztec_egg_2025_aztec_egg", -- exemple for gifts halloween_2025_spider_box
+        ["PetRemoteToBuy"] = "", -- exemple for gifts halloween_2025_spider_box
 
 
         ["PetFarmAutoSwitchFullGrown"] = false,
@@ -18,11 +18,11 @@ task.spawn(function()
         ["EggFarmActive"] = false, -- farm egg, if no more eggs will farm potion, if found new egg will farm them to
         ["EggToIgnore"] = {""}, -- eggs to ignore when eggfarm active
         ["LoopBuyEgg"] = false, -- when enough bucks will buy egg, only work with eggfarm
-        ["EggToBuyEgg"] = "aztec_egg_2025_aztec_egg",
+        ["EggToBuyEgg"] = "",
 
 
         ["NeonMegaFarm"] = false,
-        ["BuyEgg"] = "aztec_egg_2025_aztec_egg", -- only work with NeonMegaFarm, will loop buy this egg when enough bucks
+        ["BuyEgg"] = "", -- only work with NeonMegaFarm, will loop buy this egg when enough bucks
         
 
         ["AutoReleasePet"] = false, -- work with egg/pet farm, will release selected rarity
