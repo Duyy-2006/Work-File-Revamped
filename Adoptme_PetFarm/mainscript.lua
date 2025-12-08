@@ -11,7 +11,7 @@ task.spawn(function()
         ["PetRemoteToBuy"] = "aztec_egg_2025_aztec_egg", -- exemple for gifts halloween_2025_spider_box
 
 
-        ["PetFarmAutoSwitchFullGrown"] = false,
+        ["PetFarmAutoSwitchFullGrown"] = true,
         ["PetFarmActive"] = true, -- farm potion
 
 
