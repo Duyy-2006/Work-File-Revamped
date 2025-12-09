@@ -1,5 +1,5 @@
 _G.HorstManager = true -- สำหรับคนใช้รีจอยม้า ไม่ใช้ ต้องปิด! false
-
+setfpscap(6)
 _G.Configs = {
     ["Kaitun"] = {
         ["Arcane Pickaxe"] = true,
