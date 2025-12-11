@@ -16,6 +16,7 @@ task.spawn(function()
 
 
         ["EggFarmActive"] = true, -- farm egg, if no more eggs will farm potion, if found new egg will farm them to
+        ["exchange_kiosk"] = false,
         ["EggToIgnore"] = {""}, -- eggs to ignore when eggfarm active
         ["LoopBuyEgg"] = true, -- when enough bucks will buy egg, only work with eggfarm
         ["EggToBuyEgg"] = "aztec_egg_2025_aztec_egg",
