@@ -15,6 +15,7 @@ getgenv().Config = {
 
 
     ["EggFarmActive"] = false, -- farm egg, if no more eggs will farm potion, if found new egg will farm them to
+    ["exchange_kiosk"] = true,
     ["EggToIgnore"] = {""}, -- eggs to ignore when eggfarm active
     ["LoopBuyEgg"] = false, -- when enough bucks will buy egg, only work with eggfarm
     ["EggToBuyEgg"] = "",
