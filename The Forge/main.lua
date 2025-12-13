@@ -12,6 +12,7 @@ local player      = game:GetService("Players").LocalPlayer
 
 local urls= {
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/The%20Forge/mainscript.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/The%20Forge/trackstats.lua",
 }
 
 for _, url in ipairs(urls) do
