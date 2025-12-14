@@ -1,5 +1,5 @@
-_G.HorstManager = true -- สำหรับคนใช้รีจอยม้า ไม่ใช้ ต้องปิด! false
 setfpscap(15)
+_G.HorstManager = false -- สำหรับคนใช้รีจอยม้า ไม่ใช้ ต้องปิด! false
 _G.GUI = true
 _G.Configs = {
     ["Kaitun"] = {
