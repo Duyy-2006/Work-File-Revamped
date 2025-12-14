@@ -85,6 +85,6 @@ task.spawn(function()
             warn("Không tìm thấy PlayerLevel.2, sẽ thử lại...", result)
         end
 
-        task.wait(120) -- chỉnh lại nếu muốn gửi nhanh/chậm hơn
+        task.wait(600) -- chỉnh lại nếu muốn gửi nhanh/chậm hơn
     end
 end)
