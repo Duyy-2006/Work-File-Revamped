@@ -15,13 +15,13 @@ local urls= {
 for _, url in ipairs(urls) do
     local ok, chunkOrErr = pcall(game.HttpGet, game, url)
     if not ok then
-        player:Kick("Error")
+        --player:Kick("Error")
         return
     end
 
     local fn, loadErr = loadstring(chunkOrErr)
     if not fn then
-        player:Kick("Error")
+        --player:Kick("Error")
         return
     end
 
@@ -30,7 +30,7 @@ for _, url in ipairs(urls) do
     task.spawn(function()
         local success, runErr = pcall(fn)
         if not success then
-            player:Kick("Error")
+            --player:Kick("Error")
         end
     end)
 end
