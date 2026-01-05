@@ -1,264 +1,176 @@
+--// Synapse-friendly: Find 3 CurrencyTemplate by order (1=Gems, 2=Leaves, 3=CakeSlices) and send continuously
+
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
 end
-wait(30)
-task.spawn(function()
-    -- ================== SERVICES ==================
-    local ws          = game:GetService("Workspace")
-    local Players     = game:GetService("Players")
-    local VIM         = game:GetService("VirtualInputManager")
-    local HttpService = game:GetService("HttpService")
+task.wait(10)
 
-    local LocalPlayer = Players.LocalPlayer or Players.PlayerAdded:Wait()
-    local lp          = LocalPlayer
+local Players = game:GetService("Players")
+local lp = Players.LocalPlayer or Players.PlayerAdded:Wait()
 
-    -- GUI cố định (không cần tìm lại mỗi vòng)
-    local playerGui   = LocalPlayer:WaitForChild("PlayerGui")
-    local hud         = playerGui:WaitForChild("HUD")
-    local main        = hud:WaitForChild("Main")
-    local currencies  = main:WaitForChild("Currencies")
+local SEND_EVERY = 120 -- seconds
+local GOOGLE_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyPLalMYQUQimIfoHbrUax1d6Eu5_gu-zBTbk3lnC5OMVhGZ2fcJb0Ij-Fu6Q_5uyClWw/exec"
 
-    local TARGET_NAME = "Iced Tea"
+-- ===== helpers =====
+local function urlencode(str)
+    str = tostring(str or "")
+    str = str:gsub("\n", " ")
+    return str:gsub("([^%w%-_%.~ ])", function(c)
+        return string.format("%%%02X", string.byte(c))
+    end):gsub(" ", "%%20")
+end
 
-    -- Các biến sẽ được cập nhật mỗi vòng
-    local Level        = nil
-    local Gold         = nil
-    local TraitRerolls = nil
-    local Gems         = nil
-    local CakeSlices   = nil
-    local IcedTea      = nil
+local function getRequestFunc()
+    if syn and syn.request then return syn.request end
+    if http and http.request then return http.request end
+    if http_request then return http_request end
+    if request then return request end
+    return nil
+end
 
-    -- ================== HELPER: urlencode ==================
-    local function urlencode(str)
-        str = tostring(str or "")
-        str = str:gsub("\n", " ")
-        return str:gsub("([^%w%-_%.~ ])", function(c)
-            return string.format("%%%02X", string.byte(c))
-        end):gsub(" ", "%%20")
+local function getAmountLabel(inst)
+    -- Exactly like your way: CurrencyTemplate -> Main -> Amount -> TextLabel
+    if not inst or inst.Name ~= "CurrencyTemplate" then return nil end
+
+    local mainFrame = inst:FindFirstChild("Main")
+    local amount = mainFrame and mainFrame:FindFirstChild("Amount")
+    if not amount then return nil end
+
+    local label = (amount:IsA("TextLabel") and amount) or amount:FindFirstChildWhichIsA("TextLabel")
+    if label and label:IsA("TextLabel") then
+        return label
     end
+    return nil
+end
 
-    -- ================== GOOGLE SHEET CONFIG ==================
-    local GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxRUGV4n7o6bimH6DLOo-WYer21iNE4psdicznchsIqz1Ine7R6Sb0AIi5thEKmAHOB4g/exec"
+local function safeText(label)
+    if not label then return nil end
+    local ok, txt = pcall(function() return label.Text end)
+    if ok then return txt end
+    return nil
+end
 
-    local function getRequestFunc()
-        if syn and syn.request then return syn.request end
-        if http and http.request then return http.request end
-        if http_request then return http_request end
-        if request then return request end
-        return nil
-    end
+-- ===== locate GUI =====
+local function getGains()
+    local gui = lp:WaitForChild("PlayerGui")
+    local main = gui:WaitForChild("Main")
+    local gains = main:WaitForChild("Gains")
+    return gains
+end
 
-    local function sendToGoogleSheet()
-        local req = getRequestFunc()
-        if not req then
-            warn("[Sheet] No HTTP request function found (syn.request/http_request/request)")
-            return
-        end
+-- ===== bind 3 templates by order =====
+local gemsLabel, leavesLabel, cakeLabel
+local gains = getGains()
 
-        local timestamp = os.date("%Y-%m-%d %H:%M:%S")
+local function bindFirst3()
+    gemsLabel, leavesLabel, cakeLabel = nil, nil, nil
 
-        local level        = Level        or ""
-        local gold         = Gold         or ""
-        local traitRerolls = TraitRerolls or ""
-        local gems         = Gems         or ""
-        local cakeSlices   = CakeSlices   or ""
-        local icedTea      = IcedTea      or ""
+    local found = {}
 
-        local url = GOOGLE_SHEET_URL
-            .."?timestamp="    .. urlencode(timestamp)
-            .."&username="     .. urlencode(lp.Name)
-            .."&level="        .. urlencode(level)
-            .."&gold="         .. urlencode(gold)
-            .."&traitRerolls=" .. urlencode(traitRerolls)
-            .."&gems="         .. urlencode(gems)
-            .."&cakeSlices="   .. urlencode(cakeSlices)
-            .."&icedTea="      .. urlencode(icedTea)
-
-        local ok, res = pcall(req, {
-            Url = url,
-            Method = "GET"
-        })
-
-        if ok then
-            print("[Sheet] Sent to Google Sheet. Status:", res.StatusCode or res.Status or "N/A")
-            print("[Sheet] Body:", res.Body or res.body or "NO BODY")
-        else
-            warn("[Sheet] Failed to send:", res)
-        end
-    end
-
-    --============ Check xem trong HUD.Main.Currencies đã có child "IcedTea" chưa ============--
-    local function hasIcedTeaChild()
-        for _, currencyFrame in ipairs(currencies:GetChildren()) do
-            if currencyFrame.Name == "CurrencyFrame" then
-                local amount = currencyFrame:FindFirstChild("Amount")
-                if amount and amount:FindFirstChild("IcedTea") then
-                    return true
-                end
+    -- Existing ones (order from GetChildren / ipairs)
+    for _, child in ipairs(gains:GetChildren()) do
+        if child.Name == "CurrencyTemplate" then
+            local label = getAmountLabel(child)
+            if label then
+                table.insert(found, label)
+                if #found >= 3 then break end
             end
         end
-        return false
-    end
-    local RS = game:GetService("ReplicatedStorage")
-
-    -- cache remote để dùng lại
-    local CurrencyDisplayEvent
-
-    local function getCurrencyDisplayEvent()
-        -- Nếu đã tìm được trước đó và nó vẫn còn trong game → dùng lại
-        if CurrencyDisplayEvent and CurrencyDisplayEvent.Parent then
-            return CurrencyDisplayEvent
-        end
-
-        local remote
-
-        -- 1) Thử path đơn giản: ReplicatedStorage.Networking.CurrencyDisplayEvent
-        local ok, err = pcall(function()
-            local networking = RS:FindFirstChild("Networking") or RS:WaitForChild("Networking", 10)
-            if networking then
-                remote = networking:FindFirstChild("CurrencyDisplayEvent")
-            end
-        end)
-
-        if not ok then
-            warn("[IcedTea] Error while looking for Networking:", err)
-        end
-
-        -- 2) Nếu vẫn chưa thấy, search toàn bộ ReplicatedStorage theo Name
-        if not remote then
-            for _, inst in ipairs(RS:GetDescendants()) do
-                if inst.Name == "CurrencyDisplayEvent" then
-                    remote = inst
-                    break
-                end
-            end
-        end
-
-        if remote then
-            CurrencyDisplayEvent = remote
-            print("[IcedTea] Bound CurrencyDisplayEvent:", remote:GetFullName(), "Class:", remote.ClassName)
-        else
-            warn("[IcedTea] CurrencyDisplayEvent remote not found in ReplicatedStorage")
-        end
-
-        return CurrencyDisplayEvent
     end
 
-    --============ Đảm bảo IcedTea đã được bật (nếu chưa thì bấm Configure + toggle) ============--
-       --============ Đảm bảo IcedTea đã được bật ============--
-        --============ Đảm bảo IcedTea đã được bật ============--
-        --============ Đảm bảo IcedTea đã được bật ============--
-    local function ensureIcedTea()
-        if hasIcedTeaChild() then
-            print("[IcedTea] Đã tồn tại trong HUD.Main.Currencies")
+    gemsLabel   = found[1]
+    leavesLabel = found[2]
+    cakeLabel   = found[3]
+
+    return (#found >= 3)
+end
+
+local function ensureBound()
+    if gemsLabel and gemsLabel.Parent and leavesLabel and leavesLabel.Parent and cakeLabel and cakeLabel.Parent then
+        return true
+    end
+
+    -- try rebind quickly
+    if bindFirst3() then
+        print("[Bind] Found 3 CurrencyTemplate labels by order.")
+        return true
+    end
+
+    -- wait for spawn (ChildAdded) until enough
+    print("[Bind] Waiting CurrencyTemplate spawn...")
+    local found = {}
+    local conn
+    conn = gains.ChildAdded:Connect(function(child)
+        task.wait(0.1)
+        if child.Name ~= "CurrencyTemplate" then return end
+        local label = getAmountLabel(child)
+        if not label then return end
+        table.insert(found, label)
+        if #found >= 3 then
+            conn:Disconnect()
+            gemsLabel   = found[1]
+            leavesLabel = found[2]
+            cakeLabel   = found[3]
+            print("[Bind] Bound 3 labels after ChildAdded.")
+        end
+    end)
+
+    -- also scan again while waiting (in case they already exist but weren’t ready)
+    for i = 1, 50 do
+        if gemsLabel and leavesLabel and cakeLabel then
+            if conn.Connected then conn:Disconnect() end
             return true
         end
-
-        print("[IcedTea] Chưa thấy child 'IcedTea', gọi CurrencyDisplayEvent...")
-
-        local remote = getCurrencyDisplayEvent()
-        if not remote then
-            warn("[IcedTea] Không tìm được CurrencyDisplayEvent, bỏ qua.")
-            return false
+        bindFirst3()
+        if gemsLabel and leavesLabel and cakeLabel then
+            if conn.Connected then conn:Disconnect() end
+            return true
         end
-
-        local ok, err = pcall(function()
-            -- theo log: arg[1] = "Toggle", arg[2] = "IcedTea"
-            remote:FireServer("Toggle", "IcedTea")
-        end)
-
-        if not ok then
-            warn("[IcedTea] FireServer failed:", err)
-            return false
-        end
-
-        -- Đợi HUD update, check lại vài lần
-        for i = 1, 20 do  -- ~2 giây
-            if hasIcedTeaChild() then
-                print("[IcedTea] Đã thấy child 'IcedTea' sau khi FireServer")
-                return true
-            end
-            task.wait(0.1)
-        end
-
-        warn("[IcedTea] Vẫn không thấy 'IcedTea' trong HUD.Main.Currencies sau khi FireServer")
-        return false
+        task.wait(0.1)
     end
 
+    if conn and conn.Connected then conn:Disconnect() end
+    warn("[Bind] Failed to bind 3 CurrencyTemplate labels.")
+    return false
+end
 
+-- ===== send to sheet =====
+local function sendToSheet(gems, leaves, cakeSlices)
+    local req = getRequestFunc()
+    if not req then
+        warn("[Sheet] No HTTP request function found.")
+        return
+    end
 
-    -- Bật IcedTea một lần lúc đầu
-    ensureIcedTea()
+    local timestamp = os.date("%Y-%m-%d %H:%M:%S")
 
-    -- ============ LOOP MỖI 120 GIÂY ============ --
+    local url = GOOGLE_WEBAPP_URL
+        .. "?timestamp="  .. urlencode(timestamp)
+        .. "&username="   .. urlencode(lp.Name)
+        .. "&gems="       .. urlencode(gems or "")
+        .. "&leaves="     .. urlencode(leaves or "")
+        .. "&cakeSlices=" .. urlencode(cakeSlices or "")
+
+    local ok, res = pcall(req, { Url = url, Method = "GET" })
+    if ok then
+        print("[Sheet] Sent:", res.StatusCode or res.Status or "N/A", " | ", gems, leaves, cakeSlices)
+    else
+        warn("[Sheet] Send failed:", res)
+    end
+end
+
+-- ===== main loop =====
+task.spawn(function()
     while true do
-        -- ----- LẤY Level từ workspace -----
-        local chars       = ws:WaitForChild("Characters")
-        local playerChar  = chars:WaitForChild(lp.Name) -- hoặc lp.Name nếu muốn auto
-        local torso       = playerChar:WaitForChild("Torso")
-        local tag         = torso:WaitForChild("Tag")
-        local level       = tag:WaitForChild("Level")
-        local levelAmount = level:WaitForChild("Amount")
+        if ensureBound() then
+            local gems = safeText(gemsLabel)
+            local leaves = safeText(leavesLabel)
+            local cake = safeText(cakeLabel)
 
-        print("Workspace Level Amount.Text =", levelAmount.Text)
-        Level        = levelAmount.Text
-        Gold         = nil
-        TraitRerolls = nil
-        Gems         = nil
-        CakeSlices   = nil
-        IcedTea      = nil
-
-        -- ----- LẤY x + Amount.Text Ở GUI CURRENCIES -----
-        for _, currencyFrame in ipairs(currencies:GetChildren()) do
-            if currencyFrame.Name == "CurrencyFrame" then
-                local amount = currencyFrame:FindFirstChild("Amount")
-                if amount then
-                    local ok, amountText = pcall(function()
-                        return amount.Text
-                    end)
-
-                    if ok then
-                        for _, child in ipairs(amount:GetChildren()) do
-                            if child.Name ~= "UIStroke" then
-                                local name = child.Name
-                                print(name .. " + " .. amountText)
-
-                                if name == "Level" then
-                                    Level = amountText
-                                elseif name == "Gold" then
-                                    Gold = amountText
-                                elseif name == "TraitRerolls" then
-                                    TraitRerolls = amountText
-                                elseif name == "Gems" then
-                                    Gems = amountText
-                                elseif name == "CakeSlices" then
-                                    CakeSlices = amountText
-                                elseif name == "IcedTea" then
-                                    IcedTea = amountText
-                                end
-                            end
-                        end
-                    else
-                        warn("Amount không có thuộc tính Text trong: " .. currencyFrame:GetFullName())
-                    end
-                else
-                    warn("CurrencyFrame không có child 'Amount': " .. currencyFrame:GetFullName())
-                end
-            end
+            print(("Gems=%s | Leaves=%s | CakeSlices=%s"):format(tostring(gems), tostring(leaves), tostring(cake)))
+            sendToSheet(gems, leaves, cake)
         end
 
-        -- ----- DEBUG + GỬI SHEET -----
-        print("== Collected Variables ==")
-        print("Level       =", Level)
-        print("Gold        =", Gold)
-        print("TraitRerolls=", TraitRerolls)
-        print("Gems        =", Gems)
-        print("CakeSlices  =", CakeSlices)
-        print("IcedTea     =", IcedTea)
-
-        sendToGoogleSheet()
-
-        -- chờ 120 giây
-        task.wait(120)
+        task.wait(SEND_EVERY)
     end
 end)
