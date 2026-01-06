@@ -1,7 +1,7 @@
 -- Ensure the game is fully loaded before running anything
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
-end
+end 
 wait(5)
 local TeleportService = game:GetService("TeleportService")
 local PlaceId         = game.PlaceId
