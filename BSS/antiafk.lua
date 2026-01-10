@@ -12,7 +12,7 @@ print(level.Text)
 
 while true do
     local first = level.Text
-    wait(30)
+    wait(90)
     local second = level.Text
     if first == second then
         game:GetService("TeleportService"):Teleport(game.PlaceId)
