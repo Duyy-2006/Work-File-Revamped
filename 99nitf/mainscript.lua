@@ -1,6 +1,5 @@
 setfpscap(15)
 if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
-getgenv().Script_Mode = "Kaitun_Script"
 getgenv().Key = "MARU-TN4X8-SJSMZ-4WH3-DJ4GH-SA7K"
 getgenv().id = "935143471243726858"
 getgenv().Script_Mode = "Kaitun_Script"
