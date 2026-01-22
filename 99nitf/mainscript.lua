@@ -1,3 +1,7 @@
 setfpscap(15)
-_G.FarmCandy = false
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/10b8f11e253acf67b4ce0ca05a63d605.lua"))()
+if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
+getgenv().Script_Mode = "Kaitun_Script"
+getgenv().Key = "MARU-TN4X8-SJSMZ-4WH3-DJ4GH-SA7K"
+getgenv().id = "935143471243726858"
+getgenv().Script_Mode = "Kaitun_Script"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()
