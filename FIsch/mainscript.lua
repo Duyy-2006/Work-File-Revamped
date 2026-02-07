@@ -1,8 +1,9 @@
 _G.config = {
-    build = "0.0a",
+    build = "0.2a",
     fishing_position = CFrame.new(3702.94043, -1102.62109, -1089.09399, 0.0015249321, 0.00411154795, -0.999990404, -0.00142530177, 0.999990523, 0.00410937518, 0.999997795, 0.00141902152, 0.0015307779),
     rod = {
         free_gift = "Fabulous Rod",
+        FORCE_EQUIP_ROD = "", -- put the rod name here to force equip it
         main = {
             "Original No-Life Rod",
             "Carrot Rod",
@@ -23,13 +24,13 @@ _G.config = {
             "Heaven's Rod", "Magma Rod", "Firefly Rod", "Frog Rod", "Frostbane Rod", "Blazebringer Rod",
             "Azure Of Lagoon", "Free Spirit Rod", "Verdant Shear Rod", "Stone Rod","Wildflower Rod", --"Carrot Rod",
             "Great Dreamer Rod", "Wicked Fang Rod", "Fungal Rod", "Duskwire", "Sanguine Spire", "Boreal Rod",
-            "Cryolash"
+            "Cryolash", "Coral Rod", "Anchor n' Chain"
         },
-        quest_rod_start_on = 2000
+        quest_rod_start_on = 2000 -- ปรับเยอะๆ
     },
     totem = {
         enabled = true,
-        active_at_level = 100,
+        active_at_level = {2000, 2000},
 
         day_totem = "Sundial Totem",
         night_totem = "Aurora Totem",
