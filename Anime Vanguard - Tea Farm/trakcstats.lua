@@ -1,4 +1,4 @@
---// Synapse-friendly: Find 3 CurrencyTemplate by order (1=Gems, 2=Leaves, 3=CakeSlices) and send continuously
+--// Synapse-friendly: Find 2 CurrencyTemplate by order (1=Gems, 2=Present) and send continuously
 
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
@@ -29,7 +29,6 @@ local function getRequestFunc()
 end
 
 local function getAmountLabel(inst)
-    -- Exactly like your way: CurrencyTemplate -> Main -> Amount -> TextLabel
     if not inst or inst.Name ~= "CurrencyTemplate" then return nil end
 
     local mainFrame = inst:FindFirstChild("Main")
@@ -58,84 +57,80 @@ local function getGains()
     return gains
 end
 
--- ===== bind 3 templates by order =====
-local gemsLabel, leavesLabel, cakeLabel
+-- ===== bind 2 templates by order =====
+local gemsLabel, presentLabel
 local gains = getGains()
 
-local function bindFirst3()
-    gemsLabel, leavesLabel, cakeLabel = nil, nil, nil
+local function bindFirst2()
+    gemsLabel, presentLabel = nil, nil
 
     local found = {}
 
-    -- Existing ones (order from GetChildren / ipairs)
     for _, child in ipairs(gains:GetChildren()) do
         if child.Name == "CurrencyTemplate" then
             local label = getAmountLabel(child)
             if label then
                 table.insert(found, label)
-                if #found >= 3 then break end
+                if #found >= 2 then break end
             end
         end
     end
 
-    gemsLabel   = found[1]
-    leavesLabel = found[2]
-    cakeLabel   = found[3]
+    gemsLabel = found[1]
+    presentLabel = found[2]
 
-    return (#found >= 3)
+    return (#found >= 2)
 end
 
 local function ensureBound()
-    if gemsLabel and gemsLabel.Parent and leavesLabel and leavesLabel.Parent and cakeLabel and cakeLabel.Parent then
+    if gemsLabel and gemsLabel.Parent and presentLabel and presentLabel.Parent then
         return true
     end
 
-    -- try rebind quickly
-    if bindFirst3() then
-        print("[Bind] Found 3 CurrencyTemplate labels by order.")
+    if bindFirst2() then
+        print("[Bind] Found 2 CurrencyTemplate labels by order.")
         return true
     end
 
-    -- wait for spawn (ChildAdded) until enough
     print("[Bind] Waiting CurrencyTemplate spawn...")
     local found = {}
     local conn
     conn = gains.ChildAdded:Connect(function(child)
         task.wait(0.1)
         if child.Name ~= "CurrencyTemplate" then return end
+
         local label = getAmountLabel(child)
         if not label then return end
+
         table.insert(found, label)
-        if #found >= 3 then
+        if #found >= 2 then
             conn:Disconnect()
-            gemsLabel   = found[1]
-            leavesLabel = found[2]
-            cakeLabel   = found[3]
-            print("[Bind] Bound 3 labels after ChildAdded.")
+            gemsLabel = found[1]
+            presentLabel = found[2]
+            print("[Bind] Bound 2 labels after ChildAdded.")
         end
     end)
 
-    -- also scan again while waiting (in case they already exist but weren’t ready)
-    for i = 1, 50 do
-        if gemsLabel and leavesLabel and cakeLabel then
-            if conn.Connected then conn:Disconnect() end
+    for _ = 1, 50 do
+        if gemsLabel and presentLabel then
+            if conn and conn.Connected then conn:Disconnect() end
             return true
         end
-        bindFirst3()
-        if gemsLabel and leavesLabel and cakeLabel then
-            if conn.Connected then conn:Disconnect() end
+        bindFirst2()
+        if gemsLabel and presentLabel then
+            if conn and conn.Connected then conn:Disconnect() end
             return true
         end
         task.wait(0.1)
     end
 
     if conn and conn.Connected then conn:Disconnect() end
-    warn("[Bind] Failed to bind 3 CurrencyTemplate labels.")
+    warn("[Bind] Failed to bind 2 CurrencyTemplate labels.")
     return false
 end
 
 -- ===== send to sheet =====
-local function sendToSheet(gems, leaves, cakeSlices)
+local function sendToSheet(gems, present)
     local req = getRequestFunc()
     if not req then
         warn("[Sheet] No HTTP request function found.")
@@ -144,16 +139,17 @@ local function sendToSheet(gems, leaves, cakeSlices)
 
     local timestamp = os.date("%Y-%m-%d %H:%M:%S")
 
+    -- Sends both `present` and `leaves` (same value) for compatibility with older sheet handlers.
     local url = GOOGLE_WEBAPP_URL
-        .. "?timestamp="  .. urlencode(timestamp)
-        .. "&username="   .. urlencode(lp.Name)
-        .. "&gems="       .. urlencode(gems or "")
-        .. "&leaves="     .. urlencode(leaves or "")
-        .. "&cakeSlices=" .. urlencode(cakeSlices or "")
+        .. "?timestamp=" .. urlencode(timestamp)
+        .. "&username="  .. urlencode(lp.Name)
+        .. "&gems="      .. urlencode(gems or "")
+        .. "&present="   .. urlencode(present or "")
+        .. "&leaves="    .. urlencode(present or "")
 
     local ok, res = pcall(req, { Url = url, Method = "GET" })
     if ok then
-        print("[Sheet] Sent:", res.StatusCode or res.Status or "N/A", " | ", gems, leaves, cakeSlices)
+        print("[Sheet] Sent:", res.StatusCode or res.Status or "N/A", " | ", gems, present)
     else
         warn("[Sheet] Send failed:", res)
     end
@@ -164,11 +160,10 @@ task.spawn(function()
     while true do
         if ensureBound() then
             local gems = safeText(gemsLabel)
-            local leaves = safeText(leavesLabel)
-            local cake = safeText(cakeLabel)
+            local present = safeText(presentLabel)
 
-            print(("Gems=%s | Leaves=%s | CakeSlices=%s"):format(tostring(gems), tostring(leaves), tostring(cake)))
-            sendToSheet(gems, leaves, cake)
+            print(("Gems=%s | Present=%s"):format(tostring(gems), tostring(present)))
+            sendToSheet(gems, present)
         end
 
         task.wait(SEND_EVERY)
