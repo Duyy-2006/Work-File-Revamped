@@ -9,11 +9,11 @@ getgenv().Configs = {
     EnableLogRam = false, -- เปิด/ปิด Log ของ Account Manager
 
     -- การฟาร์ม ( Farm )
-    LimitDay = 10,           -- จำกัดวันถ้าถึงแล้วให้เริ่มเกมใหม่
-    MaxStrongholdLevel = 5, -- ระดับสูงสุดของดันถ้าถึงแล้วให้เริ่มเกมใหม่
-    CountStronghold = 3,    -- นับจำนวนสดันที่ผ่านครบแล้วให้เริ่มเกมใหม่
-    ClaimBadges = false,    -- รับเหรียญทั้งหมด
-    HardMode = false,        -- เปิดโหมดยาก
+    LimitDay = 10000,           -- จำกัดวันถ้าถึงแล้วให้เริ่มเกมใหม่
+    MaxStrongholdLevel = 10, -- ระดับสูงสุดของดันถ้าถึงแล้วให้เริ่มเกมใหม่
+    CountStronghold = 10,    -- นับจำนวนสดันที่ผ่านครบแล้วให้เริ่มเกมใหม่
+    ClaimBadges = true,    -- รับเหรียญทั้งหมด
+    HardMode = true,        -- เปิดโหมดยาก
 
     -- คลาส & ร้านค้า ( Class & Shop )
     BuyClass = {""},            -- ชื้อคลาส
