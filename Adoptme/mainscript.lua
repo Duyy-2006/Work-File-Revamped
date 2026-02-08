@@ -3,42 +3,42 @@ if not game:IsLoaded() then
 end
 wait(5)
 setfpscap(2)
-script_key="dCsrDWdsslpaMkVGHZmrKbKOdfPkMXCG";
-getgenv().Config = {
-    ["PetAMountToBuy"] = "0", -- can be 999
-    ["WhatCategory"] = "", -- gifts if WhatCategory = "" then = pets
-    ["PetRemoteToBuy"] = "", -- exemple for gifts halloween_2025_spider_box
+task.spawn(function()
+    script_key="dCsrDWdsslpaMkVGHZmrKbKOdfPkMXCG";
+    getgenv().Config = {
+        ["PetAMountToBuy"] = "0", -- can be 999
+        ["WhatCategory"] = "pets", -- gifts if WhatCategory = "" then = pets
+        ["PetRemoteToBuy"] = "", -- exemple for gifts halloween_2025_spider_box
 
 
-    ["PetFarmAutoSwitchFullGrown"] = false,
-    ["PetFarmActive"] = true, -- farm potion
+        ["PetFarmAutoSwitchFullGrown"] = false,
+        ["PetFarmActive"] = true, -- farm potion
 
 
-    ["EggFarmActive"] = false, -- farm egg, if no more eggs will farm potion, if found new egg will farm them to
-    ["exchange_kiosk"] = true,
-    ["EggToIgnore"] = {""}, -- eggs to ignore when eggfarm active
-    ["LoopBuyEgg"] = false, -- when enough bucks will buy egg, only work with eggfarm
-    ["EggToBuyEgg"] = "",
+        ["EggFarmActive"] = false, -- farm egg, if no more eggs will farm potion, if found new egg will farm them to
+        ["EggToIgnore"] = {""}, -- eggs to ignore when eggfarm active
+        ["LoopBuyEgg"] = false, -- when enough bucks will buy egg, only work with eggfarm
+        ["EggToBuyEgg"] = "",
 
 
-    ["NeonMegaFarm"] = false,
-    ["BuyEgg"] = "", -- only work with NeonMegaFarm, will loop buy this egg when enough bucks
-    
+        ["NeonMegaFarm"] = false,
+        ["BuyEgg"] = "", -- only work with NeonMegaFarm, will loop buy this egg when enough bucks
+        
 
-    ["AutoReleasePet"] = false, -- work with egg/pet farm, will release selected rarity
-    ["RecycleWebhook"] = "",
-    ["common"] = false,
-    ["uncommon"] = false,
-    ["rare"] = false,
-    ["ultra_rare"] = false,
+        ["AutoReleasePet"] = false, -- work with egg/pet farm, will release selected rarity
+        ["RecycleWebhook"] = "",
+        ["common"] = false,
+        ["uncommon"] = false,
+        ["rare"] = false,
+        ["ultra_rare"] = false,
 
-    ["HideUselessGui"] = true,
-    ["Blur_username"] = true,
-    ["Blazing_Lion_Log"] = false,
-    ["DiscordId"] = "123456",
-    ["Webhook"] = "",
-    ["LegendaryWebhook"] = "",
-    ["NeonMegaWebhook"] = "",
-}
-loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/66567bfd337b57eb059b58dbe1badb89.lua"))()
-
+        ["HideUselessGui"] = true,
+        ["Blur_username"] = true,
+        ["Blazing_Lion_Log"] = false,
+        ["DiscordId"] = "123456",
+        ["Webhook"] = "",
+        ["LegendaryWebhook"] = "",
+        ["NeonMegaWebhook"] = "",
+    }
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/66567bfd337b57eb059b58dbe1badb89.lua"))()
+end)
