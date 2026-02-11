@@ -17,7 +17,7 @@ getgenv().Configs = {
 
     -- คลาส & ร้านค้า ( Class & Shop )
     BuyClass = {""},            -- ชื้อคลาส
-    DoFirstTimeReroll = false,  -- รีร้านคลาสครั้งแรกฟรี
+    DoFirstTimeReroll = true,  -- รีร้านคลาสครั้งแรกฟรี
     GuaranteeReroll = false,    -- รีร้านคลาสจนกว่าจะได้คลาสที่ต้องการ
     AutoEquipClass = "",        -- สวมใส่ Class
     UpgradeClass = false,       -- อัพเวลคลาสอัตโนมัติ

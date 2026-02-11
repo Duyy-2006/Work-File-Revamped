@@ -5,8 +5,8 @@ _G.VanguardSettings = {
     ['ClaimQuests'] = true,
     ['ClaimAchievement'] = true,
     ['ClaimBattlepass'] = true,
-    ['ClaimMileStones'] = true,
-    ['RedeemCodes'] = true,
+    ['ClaimMileStones'] = false,
+    ['RedeemCodes'] = false,
     ['JoinGames'] = true,
     ['Summon'] = {
         ['LockUnits'] = false,
@@ -15,18 +15,8 @@ _G.VanguardSettings = {
     ['Webhooks'] = {
         ['Enabled'] = true,
         ['Url'] = ''
-    },
-    ["TeaFarm"] = {
-        ["Enabled"] = true,
-        ["FarmAtLevel"] = 120,
-        ["RandomUnits"] = {
-            ["SellUnitsNotLock"] = true,
-            ["RandomWhenHaveTea"] = 100000,
-            ["Lock"] = {
-                "Iscanur (Pride)"
-            }
-        }
     }
 }
+-- Script Here
 script_key="fzBRbUpSYXumdyRUZBxmXyiUOcpTUPqR";
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/6756a57cd51293c409a1f7627cba5572.lua"))()
