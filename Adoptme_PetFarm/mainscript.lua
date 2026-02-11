@@ -3,7 +3,7 @@ if not game:IsLoaded() then
 end
 wait(5)
 setfpscap(10)
-script_key="dCsrDWdsslpaMkVGHZmrKbKOdfPkMXCG";
+script_key="smAKctNMVNFVhaACRztFxbgXDUmZVXfR";
 getgenv().Config = {
     ["PetAMountToBuy"] = "999", -- can be 999
     ["WhatCategory"] = "pets", -- gifts if WhatCategory = "" then = pets
