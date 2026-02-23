@@ -41,8 +41,8 @@ getgenv().Config = {
     },
 
     Settings = {
-        AutoShowUI = false, -- TẮT UI để tiết kiệm RAM khi mass farm
-        ShowOverlay = false, -- TẮT overlay 
+        AutoShowUI = true, -- TẮT UI để tiết kiệm RAM khi mass farm
+        ShowOverlay = true, -- TẮT overlay 
         ReduceGraphics = true, -- BẬT giảm đồ họa tối đa
         FPSCap = 2, -- FPS rất thấp cho mass farm nhiều acc
         LureId = "ice_dimension_2025_ice_soup_bait"
