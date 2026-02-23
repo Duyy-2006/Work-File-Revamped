@@ -1,6 +1,6 @@
 getgenv().Config = {
     Dashboard = {
-        Enabled = true, -- Giữ dashboard để theo dõi
+        Enabled = false, -- Giữ dashboard để theo dõi
         GroupName = "vps1",
     },
 
