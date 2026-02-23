@@ -1,43 +1,89 @@
-if not game:IsLoaded() then
-    repeat game.Loaded:Wait() until game:IsLoaded()
-end
-wait(5)
-setfpscap(10)
-script_key="NSaeULOLrApGSTqGempBwKukUgmRpkxo";
 getgenv().Config = {
-    ["PetAMountToBuy"] = "999", -- can be 999
-    ["WhatCategory"] = "pets", -- gifts if WhatCategory = "" then = pets
-    ["PetRemoteToBuy"] = "aztec_egg_2025_aztec_egg", -- exemple for gifts halloween_2025_spider_box
-
-
-    ["PetFarmAutoSwitchFullGrown"] = false,
-    ["PetFarmActive"] = true, -- farm potion
-
-
-    ["EggFarmActive"] = true, -- farm egg, if no more eggs will farm potion, if found new egg will farm them to
-    ["exchange_kiosk"] = true,
-    ["EggToIgnore"] = {""}, -- eggs to ignore when eggfarm active
-    ["LoopBuyEgg"] = true, -- when enough bucks will buy egg, only work with eggfarm
-    ["EggToBuyEgg"] = "aztec_egg_2025_aztec_egg",
-
-
-    ["NeonMegaFarm"] = true,
-    ["BuyEgg"] = "aztec_egg_2025_aztec_egg", -- only work with NeonMegaFarm, will loop buy this egg when enough bucks
-    
-
-    ["AutoReleasePet"] = false, -- work with egg/pet farm, will release selected rarity
-    ["RecycleWebhook"] = "",
-    ["common"] = false,
-    ["uncommon"] = false,
-    ["rare"] = false,
-    ["ultra_rare"] = false,
-
-    ["HideUselessGui"] = true,
-    ["Blur_username"] = true,
-    ["Blazing_Lion_Log"] = false,
-    ["DiscordId"] = "123456",
-    ["Webhook"] = "",
-    ["LegendaryWebhook"] = "",
-    ["NeonMegaWebhook"] = "",
-}
-loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/66567bfd337b57eb059b58dbe1badb89.lua"))()
+        Dashboard = {
+            Enabled = true, -- Connect to Adopt Me dashboard To Control Script/View Stats (https://zekehub.com/dashboard/adoptme)
+            GroupName = "adoptme", -- Group name for organizing accounts on dashboard
+        },
+        BabyFarm = true, -- Does baby farm
+        PetFarm = {
+            Enabled = true, -- Enables the Pet Farm
+            FarmEggs = true, -- If true, equips eggs to hatch them. If false, equips regular pets
+            BuyEggs = true, -- If FarmEggs is true and no eggs in inventory, buy eggs automatically
+            EggTypes = {"cracked_egg"}, -- Which eggs to equip ({} = any egg, or {"cracked_egg", "royal_egg"} for specific)
+            BuyEggType = "cracked_egg", -- Which egg to buy when BuyEggs is true ("any" or specific egg ID)
+            MaxPets = 1, -- How many pets to equip at once (1 = free, 2 = requires Robux gamepass)
+            FarmUntilFullGrown = true, -- If true, selects pets that aren't full grown first
+            PrioritizeFriendship = false, -- If true, selects pets with higher friendship level first
+            SelectiveFarm = false, -- If true, only farm pets in SelectedPetTypes list
+            SelectedPetTypes = {}, -- Pet IDs to farm when SelectiveFarm is true (e.g., {"dog", "cat"})
+        },
+        AutoTrade = {
+            Enabled = false, -- Enable auto trading
+            AutoAcceptTrades = false, -- Accept incoming trade requests
+            Usernames = {}, -- Players to send trades to
+            TradeMode = "all", -- "all" = everything in categories, "specific" = only Items list
+            Categories = {}, -- {"pets", "toys", "food", "transport", "gifts", "stickers", "pet_accessories", "roleplay"}
+            Items = {}, -- Item IDs when TradeMode = "specific"
+            ItemCounts = {}, -- Max count per item in Items array
+            PetTypes = {}, -- {} = all, {"regular", "neon", "mega"}
+            Ages = {}, -- {} = all, {1, 2, 3, 4, 5, 6}
+            AutoLeaveAfterTrades = false, -- Leave trade area after completing trades
+        },
+        AutoNeon = {
+            Enabled = true, -- Enable auto neon/mega fusion
+            MakeMega = true, -- Fuse neons into mega neons
+            NeonAll = true, -- Neon everything possible
+            SelectedPets = {}, -- {} when NeonAll = true, otherwise {"dog", "cat"} etc
+            MaxPerType = {}, -- {} = unlimited, {dog = 2, cat = 1} = limits per pet type
+        },
+        Settings = {
+            AutoShowUI = true, -- Load the UI on script start (main overlay disable for less memory usage)
+            ShowOverlay = true, -- Show stats overlay (disables 3D rendering)
+            ReduceGraphics = true, -- Reduce graphics quality to minimum
+            FPSCap = 3, -- FPS cap option (0 = uncapped)
+            LureId = "ice_dimension_2025_ice_soup_bait" -- what lure to use for example: "ice_dimension_2025_ice_soup_bait"
+        },
+        AutoPotion = {
+            Enabled = false, -- Use age potions on pets to level them up
+            SelectedPets = {}, -- Pet IDs to use potions on (empty = does nothing)
+        },
+        AutoBuy = {
+            Enabled = false, -- Automatically buy items from shops
+            SelectedItems = {}, -- Item IDs to buy
+            BuyAmounts = {}, -- How many of each item to buy. Example: {5, 10} buys 5 cracked_eggs and 10 sandwiches. Empty {} buys infinite of each item. If there are more items than amounts, remaining items default to infinite.
+        },
+        AutoPay = {
+            Enabled = false, -- Send bucks to another player
+            TargetPlayer = "", -- Username of player to pay bucks to
+        },
+        AutoOpen = {
+            Enabled = false, -- Open gift boxes, baits, etc automatically
+            Items = {}, -- Item IDs to auto open
+        },
+        AutoRecycle = {
+            Enabled = true, -- Recycle pets at recycler for rewards
+            RarityFilter = {common = true, uncommon = true, rare = true, ultra_rare = true, legendary = true}, -- Which rarities to recycle (true = recycle, false = keep)
+            AgeFilter = {}, -- empty = all ages, or {1,2,3,4,5,6}
+            VersionFilter = {"mega"}, -- empty = all, or {"regular", "neon", "mega"}
+            ExcludedPets = {"pet_recycler_2025_giant_panda", "penguins_2025_dango_penguins", "food_pets_2026_dragonfruit_fox"}, -- Pet IDs to never recycle even if rarity matches {"dog", "cat"}
+        },
+        IdleProgression = {
+            Enabled = false, -- Put pets in pet pen for idle leveling
+            SelectedPets = {"pet_recycler_2025_crystal_egg"}, -- Pet IDs to put in pet pen (empty = use all)
+            ExcludedPets = {}, -- Pet IDs to never put in pet pen
+        },
+        Webhook = {
+            Enabled = false, -- Send webhook notifications to Discord
+            URL = "https://discord.com/api/", -- Discord webhook URL for notifications
+            PetUnlock = {
+                Enabled = false, -- Send webhook when hatching/unlocking a pet
+                URL = "https://discord.com/api/webhooks/", -- Webhook URL for pet unlocks
+                FilterRarities = {"legendary", "ultra_rare"}, -- Only send for these rarities
+            },
+        },
+        TaskExclusion = {
+            Enabled = false, -- Skip certain farming tasks
+            ExcludedTasks = {}, -- Task IDs to skip (e.g., {"buccaneer_band", "summerfest_bonfire"})
+        },
+    };
+getgenv().scriptkey="IqLvuQqjVmdfdazFvMQWLHMzrrJjDnbN"
+loadstring(game:HttpGet("https://zekehub.com/scripts/AdoptMe/MassFarm.lua"))()
