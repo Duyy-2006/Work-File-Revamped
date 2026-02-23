@@ -1,44 +1,77 @@
-if not game:IsLoaded() then
-    repeat game.Loaded:Wait() until game:IsLoaded()
-end
-wait(5)
-setfpscap(2)
-task.spawn(function()
-    script_key="smAKctNMVNFVhaACRztFxbgXDUmZVXfR";
-    getgenv().Config = {
-        ["PetAMountToBuy"] = "0", -- can be 999
-        ["WhatCategory"] = "pets", -- gifts if WhatCategory = "" then = pets
-        ["PetRemoteToBuy"] = "", -- exemple for gifts halloween_2025_spider_box
+getgenv().Config = {
+    BabyFarm = true, -- Farm bucks từ nhiệm vụ chăm baby
 
+    PetFarm = {
+        Enabled = true, -- Bật farm pet để hoàn thành pet needs → nhận bucks/ticket
+        FarmEggs = false,
+        BuyEggs = false,
+        EggTypes = {},
+        BuyEggType = "any",
+        MaxPets = 1,
+        FarmUntilFullGrown = true, -- Ưu tiên pet chưa full grown để farm XP liên tục
+        PrioritizeFriendship = false,
+        SelectiveFarm = false,
+        SelectedPetTypes = {},
+    },
 
-        ["PetFarmAutoSwitchFullGrown"] = false,
-        ["PetFarmActive"] = true, -- farm potion
+    AutoNeon = {
+        Enabled = false, -- TẮT - không tiêu pet vào neon
+        MakeMega = false,
+        NeonAll = false,
+        SelectedPets = {},
+        MaxPerType = {},
+    },
 
+    Settings = {
+        ShowOverlay = true, -- Theo dõi tiến trình farm
+        ReduceGraphics = true, -- Giảm đồ họa để farm AFK mượt
+        FPSCap = 2, -- Tiết kiệm tài nguyên máy
+        LureId = "ice_dimension_2025_ice_soup_bait"
+    },
 
-        ["EggFarmActive"] = false, -- farm egg, if no more eggs will farm potion, if found new egg will farm them to
-        ["EggToIgnore"] = {""}, -- eggs to ignore when eggfarm active
-        ["LoopBuyEgg"] = false, -- when enough bucks will buy egg, only work with eggfarm
-        ["EggToBuyEgg"] = "",
+    AutoBuy = {
+        Enabled = false, -- TẮT HOÀN TOÀN - không mua gì hết
+        SelectedItems = {},
+        BuyAmounts = {},
+    },
 
+    AutoOpen = {
+        Enabled = false, -- TẮT - không mở gift/box
+        Items = {},
+    },
 
-        ["NeonMegaFarm"] = false,
-        ["BuyEgg"] = "", -- only work with NeonMegaFarm, will loop buy this egg when enough bucks
-        
+    AutoPotion = {
+        Enabled = false, -- TẮT - không dùng potion, giữ lại hết
+        SelectedPets = {},
+    },
 
-        ["AutoReleasePet"] = false, -- work with egg/pet farm, will release selected rarity
-        ["RecycleWebhook"] = "",
-        ["common"] = false,
-        ["uncommon"] = false,
-        ["rare"] = false,
-        ["ultra_rare"] = false,
+    AutoRecycle = {
+        Enabled = false, -- TẮT - không xóa pet nào
+        RarityFilter = {},
+        AgeFilter = {},
+        ExcludedPets = {},
+    },
 
-        ["HideUselessGui"] = true,
-        ["Blur_username"] = true,
-        ["Blazing_Lion_Log"] = false,
-        ["DiscordId"] = "123456",
-        ["Webhook"] = "",
-        ["LegendaryWebhook"] = "",
-        ["NeonMegaWebhook"] = "",
-    }
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/66567bfd337b57eb059b58dbe1badb89.lua"))()
-end)
+    IdleProgression = {
+        Enabled = true, -- BẬT - pet tự level trong pen khi idle
+        SelectedPets = {},
+        ExcludedPets = {},
+    },
+
+    Webhook = {
+        Enabled = false,
+        URL = "https://discord.com/api/",
+        PetUnlock = {
+            Enabled = false,
+            URL = "https://discord.com/api/webhooks/",
+            FilterRarities = {"legendary", "ultra_rare"},
+        },
+    },
+
+    TaskExclusion = {
+        Enabled = false, -- KHÔNG skip task nào → farm tối đa bucks & ticket
+        ExcludedTasks = {},
+    },
+};
+getgenv().scriptkey="IqLvuQqjVmdfdazFvMQWLHMzrrJjDnbN"
+loadstring(game:HttpGet("https://zekehub.com/scripts/AdoptMe/Lite.lua"))()
