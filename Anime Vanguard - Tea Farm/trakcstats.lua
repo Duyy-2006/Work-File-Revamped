@@ -9,7 +9,7 @@ local Players = game:GetService("Players")
 local lp = Players.LocalPlayer or Players.PlayerAdded:Wait()
 
 local SEND_EVERY = 120 -- seconds
-local GOOGLE_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyKVFobDyujoOCDgLlqgQ16SNYD-Bpr6Ih6hNnfSTLxmBMS1tywHasgP9SxWErJo7i22g/exec"
+local GOOGLE_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyL1JiRHQDipIUj3W9DNnTUR4S3NLqZm7Kh-b1fRoIccjna69GMOgiMw1RxcLPqoll8/exec"
 
 -- ===== helpers =====
 local function urlencode(str)
