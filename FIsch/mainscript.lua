@@ -110,5 +110,5 @@ _G.config = {
         },
     }
 }
-script_key="ZhHXPhFcLsWRspVRalhmcSuhqHVsoOOE";
+script_key="AKmyDGcNLevrnLuEOpzBiVTUViOBXIxJ";
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/Muhaha/refs/heads/main/Loader.lua"))()
