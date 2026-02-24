@@ -46,11 +46,11 @@ getgenv().Config = {
                 -- If a rarity is not listed or empty, pets of that rarity will NOT be recycled
                 -- If a rarity has versions listed, ONLY those versions will be recycled
 
-                common = {"mega"},  -- Recycle all common versions
-                uncommon = {"mega"},                    -- Only recycle neon uncommons
-                rare = {"mega"},     -- Recycle all rare versions
-                ultra_rare = {"mega"}, -- Recycle all ultra rare versions
-                legendary = {"mega"},                   -- Only recycle mega legendaries
+                common = {"mega","neon"},  -- Recycle all common versions
+                uncommon = {"mega","neon"},                    -- Only recycle neon uncommons
+                rare = {"mega","neon"},     -- Recycle all rare versions
+                ultra_rare = {"mega","neon"}, -- Recycle all ultra rare versions
+                legendary = {"mega","neon"},                   -- Only recycle mega legendaries
             },
             AgeFilter = {}, -- Empty = all ages, or specific ages e.g. {1, 2, 3, 4, 5, 6} (1=Newborn, 6=Full Grown)
             ExcludedPets = {}, -- Pet IDs to never recycle e.g. {"dog", "cat", "shadow_dragon"}
