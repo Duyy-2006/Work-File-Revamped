@@ -1,10 +1,6 @@
 getgenv().Config = {
-        Dashboard = {
-            Enabled = false, -- Connect to Adopt Me dashboard To Control Script/View Stats (https://zekehub.com/dashboard/adoptme)
-            GroupName = "adoptme", -- Group name for organizing accounts on dashboard
-        },
         BabyFarm = true, -- Does baby farm
-        PetFarm = {
+            PetFarm = {
             Enabled = true, -- Enables the Pet Farm
             FarmEggs = true, -- If true, equips eggs to hatch them. If false, equips regular pets
             BuyEggs = true, -- If FarmEggs is true and no eggs in inventory, buy eggs automatically
@@ -16,18 +12,6 @@ getgenv().Config = {
             SelectiveFarm = false, -- If true, only farm pets in SelectedPetTypes list
             SelectedPetTypes = {}, -- Pet IDs to farm when SelectiveFarm is true (e.g., {"dog", "cat"})
         },
-        AutoTrade = {
-            Enabled = false, -- Enable auto trading
-            AutoAcceptTrades = false, -- Accept incoming trade requests
-            Usernames = {}, -- Players to send trades to
-            TradeMode = "all", -- "all" = everything in categories, "specific" = only Items list
-            Categories = {}, -- {"pets", "toys", "food", "transport", "gifts", "stickers", "pet_accessories", "roleplay"}
-            Items = {}, -- Item IDs when TradeMode = "specific"
-            ItemCounts = {}, -- Max count per item in Items array
-            PetTypes = {}, -- {} = all, {"regular", "neon", "mega"}
-            Ages = {}, -- {} = all, {1, 2, 3, 4, 5, 6}
-            AutoLeaveAfterTrades = false, -- Leave trade area after completing trades
-        },
         AutoNeon = {
             Enabled = true, -- Enable auto neon/mega fusion
             MakeMega = true, -- Fuse neons into mega neons
@@ -36,39 +20,44 @@ getgenv().Config = {
             MaxPerType = {}, -- {} = unlimited, {dog = 2, cat = 1} = limits per pet type
         },
         Settings = {
-            AutoShowUI = true, -- Load the UI on script start (main overlay disable for less memory usage)
             ShowOverlay = true, -- Show stats overlay (disables 3D rendering)
             ReduceGraphics = true, -- Reduce graphics quality to minimum
             FPSCap = 3, -- FPS cap option (0 = uncapped)
             LureId = "ice_dimension_2025_ice_soup_bait" -- what lure to use for example: "ice_dimension_2025_ice_soup_bait"
         },
+        AutoBuy = {
+            Enabled = true, -- Automatically buy items from shops
+            SelectedItems = {"gifts|winter_2025_angus_box"}, -- Item IDs to buy
+            BuyAmounts = {}, -- How many of each item to buy. Example: {5, 10} buys 5 cracked_eggs and 10 sandwiches. Empty {} buys infinite of each item. If there are more items than amounts, remaining items default to infinite.
+        },
+        AutoOpen = {
+            Enabled = false, -- Open gift boxes automatically
+            Items = {}, -- Item IDs to auto open (e.g., {"winter_2025_angus_box"})
+        },
         AutoPotion = {
             Enabled = false, -- Use age potions on pets to level them up
             SelectedPets = {}, -- Pet IDs to use potions on (empty = does nothing)
         },
-        AutoBuy = {
-            Enabled = false, -- Automatically buy items from shops
-            SelectedItems = {}, -- Item IDs to buy
-            BuyAmounts = {}, -- How many of each item to buy. Example: {5, 10} buys 5 cracked_eggs and 10 sandwiches. Empty {} buys infinite of each item. If there are more items than amounts, remaining items default to infinite.
-        },
-        AutoPay = {
-            Enabled = false, -- Send bucks to another player
-            TargetPlayer = "", -- Username of player to pay bucks to
-        },
-        AutoOpen = {
-            Enabled = false, -- Open gift boxes, baits, etc automatically
-            Items = {}, -- Item IDs to auto open
-        },
         AutoRecycle = {
-            Enabled = true, -- Recycle pets at recycler for rewards
-            RarityFilter = {common = true, uncommon = true, rare = true, ultra_rare = true, legendary = true}, -- Which rarities to recycle (true = recycle, false = keep)
-            AgeFilter = {}, -- empty = all ages, or {1,2,3,4,5,6}
-            VersionFilter = {"mega"}, -- empty = all, or {"regular", "neon", "mega"}
-            ExcludedPets = {"pet_recycler_2025_giant_panda", "penguins_2025_dango_penguins", "food_pets_2026_dragonfruit_fox"}, -- Pet IDs to never recycle even if rarity matches {"dog", "cat"}
+            Enabled = true, -- Toggle auto recycling on/off
+            RarityFilter = {
+                -- Each rarity maps to a list of versions to recycle
+                -- Versions: "regular", "neon", "mega"
+                -- If a rarity is not listed or empty, pets of that rarity will NOT be recycled
+                -- If a rarity has versions listed, ONLY those versions will be recycled
+
+                common = {"mega"},  -- Recycle all common versions
+                uncommon = {"mega"},                    -- Only recycle neon uncommons
+                rare = {"mega"},     -- Recycle all rare versions
+                ultra_rare = {"mega"}, -- Recycle all ultra rare versions
+                legendary = {"mega"},                   -- Only recycle mega legendaries
+            },
+            AgeFilter = {}, -- Empty = all ages, or specific ages e.g. {1, 2, 3, 4, 5, 6} (1=Newborn, 6=Full Grown)
+            ExcludedPets = {}, -- Pet IDs to never recycle e.g. {"dog", "cat", "shadow_dragon"}
         },
         IdleProgression = {
             Enabled = false, -- Put pets in pet pen for idle leveling
-            SelectedPets = {"pet_recycler_2025_crystal_egg"}, -- Pet IDs to put in pet pen (empty = use all)
+            SelectedPets = {"cracked_egg"}, -- Pet IDs to put in pet pen (empty = use all)
             ExcludedPets = {}, -- Pet IDs to never put in pet pen
         },
         Webhook = {
