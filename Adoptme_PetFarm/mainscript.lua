@@ -9,8 +9,8 @@ getgenv().Config = {
             MaxPets = 1, -- How many pets to equip at once (1 = free, 2 = requires Robux gamepass)
             FarmUntilFullGrown = true, -- If true, selects pets that aren't full grown first
             PrioritizeFriendship = false, -- If true, selects pets with higher friendship level first
-            SelectiveFarm = false, -- If true, only farm pets in SelectedPetTypes list
-            SelectedPetTypes = {}, -- Pet IDs to farm when SelectiveFarm is true (e.g., {"dog", "cat"})
+            SelectiveFarm = true, -- If true, only farm pets in SelectedPetTypes list
+            SelectedPetTypes = {"ancient_dragon","alicorn","dragonfly"}, -- Pet IDs to farm when SelectiveFarm is true (e.g., {"dog", "cat"})
         },
         AutoNeon = {
             Enabled = true, -- Enable auto neon/mega fusion
@@ -35,8 +35,8 @@ getgenv().Config = {
             Items = {}, -- Item IDs to auto open (e.g., {"winter_2025_angus_box"})
         },
         AutoPotion = {
-            Enabled = false, -- Use age potions on pets to level them up
-            SelectedPets = {}, -- Pet IDs to use potions on (empty = does nothing)
+            Enabled = true, -- Use age potions on pets to level them up
+            SelectedPets = {"ancient_dragon","alicorn","dragonfly"}, -- Pet IDs to use potions on (empty = does nothing)
         },
         AutoRecycle = {
             Enabled = true, -- Toggle auto recycling on/off
@@ -50,7 +50,7 @@ getgenv().Config = {
                 uncommon = {"regular","neon","mega"},                    -- Only recycle neon uncommons
                 rare = {"regular","neon","mega"},     -- Recycle all rare versions
                 ultra_rare = {"regular","neon","mega"}, -- Recycle all ultra rare versions
-                legendary = {"regular","neon","mega"},                   -- Only recycle mega legendaries
+                legendary = {"neon","mega"},                   -- Only recycle mega legendaries
             },
             AgeFilter = {}, -- Empty = all ages, or specific ages e.g. {1, 2, 3, 4, 5, 6} (1=Newborn, 6=Full Grown)
             ExcludedPets = {}, -- Pet IDs to never recycle e.g. {"dog", "cat", "shadow_dragon"}
