@@ -13,6 +13,7 @@ local player      = game:GetService("Players").LocalPlayer
 local urls= {
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Adoptme_PetFarm/mainscript.lua",
         "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Adoptme_PetFarm/trackstats.lua",
+        "https://raw.githubusercontent.com/Duyy-2006/Work-File-Revamped/refs/heads/main/Adoptme_PetFarm/tickettrack.lua",
 }
 
 for _, url in ipairs(urls) do
