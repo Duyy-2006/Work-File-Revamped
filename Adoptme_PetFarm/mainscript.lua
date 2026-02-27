@@ -10,7 +10,7 @@ getgenv().Config = {
             FarmUntilFullGrown = true, -- If true, selects pets that aren't full grown first
             PrioritizeFriendship = false, -- If true, selects pets with higher friendship level first
             SelectiveFarm = true, -- If true, only farm pets in SelectedPetTypes list
-            SelectedPetTypes = {"ancient_dragon","alicorn","dragonfly"}, -- Pet IDs to farm when SelectiveFarm is true (e.g., {"dog", "cat"})
+            SelectedPetTypes = {"ancient_dragon","alicorn","dragonfly","corgi","robot","swordfish"}, -- Pet IDs to farm when SelectiveFarm is true (e.g., {"dog", "cat"})
         },
         AutoNeon = {
             Enabled = true, -- Enable auto neon/mega fusion
@@ -36,7 +36,7 @@ getgenv().Config = {
         },
         AutoPotion = {
             Enabled = true, -- Use age potions on pets to level them up
-            SelectedPets = {"ancient_dragon","alicorn","dragonfly"}, -- Pet IDs to use potions on (empty = does nothing)
+            SelectedPets = {"ancient_dragon","alicorn","dragonfly","corgi","robot","swordfish"}, -- Pet IDs to use potions on (empty = does nothing)
         },
         AutoRecycle = {
             Enabled = true, -- Toggle auto recycling on/off
@@ -50,7 +50,7 @@ getgenv().Config = {
                 uncommon = {"regular","neon","mega"},                    -- Only recycle neon uncommons
                 rare = {"regular","neon","mega"},     -- Recycle all rare versions
                 ultra_rare = {"mega"}, -- Recycle all ultra rare versions
-                legendary = {"mega"},                   -- Only recycle mega legendaries
+                legendary = {"neon","mega"},                   -- Only recycle mega legendaries
             },
             AgeFilter = {}, -- Empty = all ages, or specific ages e.g. {1, 2, 3, 4, 5, 6} (1=Newborn, 6=Full Grown)
             ExcludedPets = {}, -- Pet IDs to never recycle e.g. {"dog", "cat", "shadow_dragon"}
