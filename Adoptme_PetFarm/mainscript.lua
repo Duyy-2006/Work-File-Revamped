@@ -49,8 +49,8 @@ getgenv().Config = {
                 common = {"regular","neon","mega"},  -- Recycle all common versions
                 uncommon = {"regular","neon","mega"},                    -- Only recycle neon uncommons
                 rare = {"regular","neon","mega"},     -- Recycle all rare versions
-                ultra_rare = {"regular","neon","mega"}, -- Recycle all ultra rare versions
-                legendary = {"neon","mega"},                   -- Only recycle mega legendaries
+                ultra_rare = {"mega"}, -- Recycle all ultra rare versions
+                legendary = {"mega"},                   -- Only recycle mega legendaries
             },
             AgeFilter = {}, -- Empty = all ages, or specific ages e.g. {1, 2, 3, 4, 5, 6} (1=Newborn, 6=Full Grown)
             ExcludedPets = {}, -- Pet IDs to never recycle e.g. {"dog", "cat", "shadow_dragon"}
