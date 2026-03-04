@@ -1,127 +1,125 @@
--- Chờ game load hoàn toàn
-if not game:IsLoaded() then
-    game.Loaded:Wait()
-end
+if not game:IsLoaded() then game.Loaded:Wait() end
 wait(10)
 
 local targetPlaceId = 18219125606
 local TeleportService = game:GetService("TeleportService")
 local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
-local VirtualInputManager = game:GetService("VirtualInputManager")
 local player = Players.LocalPlayer
 
 -- =============================================
--- DETECT MOBILE
+-- CORE: Fire mọi connection trên object
 -- =============================================
-local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
-print("Platform: " .. (isMobile and "MOBILE" or "PC"))
-
--- =============================================
--- FIRE CONNECTIONS
--- =============================================
-local function fireConnections(instance, eventName)
-    local ok, conns = pcall(getconnections, instance[eventName])
-    if not ok or not conns then return false end
+local function fireAllConnections(obj)
     local fired = false
-    for _, conn in ipairs(conns) do
-        pcall(function()
-            conn:Fire()
-            fired = true
-            print("[Connections] Fired: " .. instance:GetFullName() .. "." .. eventName)
-        end)
-    end
-    return fired
-end
-
--- =============================================
--- MOBILE TOUCH SIMULATION
--- =============================================
-local function simulateTouch(guiObject)
-    if not guiObject or not guiObject.Parent then return false end
-    local fired = false
-
-    local pos = guiObject.AbsolutePosition
-    local size = guiObject.AbsoluteSize
-    local cx = pos.X + size.X / 2
-    local cy = pos.Y + size.Y / 2
-
-    -- Method 1: VirtualInputManager Touch
-    pcall(function()
-        VirtualInputManager:SendTouchEvent(0, Vector2.new(cx, cy), true, game)
-        task.wait(0.05)
-        VirtualInputManager:SendTouchEvent(0, Vector2.new(cx, cy), false, game)
-        print("[Touch] VirtualInputManager touch sent")
-        fired = true
-    end)
-
-    -- Method 2: VirtualInputManager Mouse (fallback)
-    pcall(function()
-        VirtualInputManager:SendMouseButtonEvent(cx, cy, 0, true, game, 0)
-        task.wait(0.05)
-        VirtualInputManager:SendMouseButtonEvent(cx, cy, 0, false, game, 0)
-        print("[Touch] VirtualInputManager mouse sent")
-        fired = true
-    end)
-
-    -- Method 3: SendTouchEvent via gyroscope workaround
-    pcall(function()
-        VirtualInputManager:SendMouseMoveEvent(cx, cy, game)
-        task.wait(0.02)
-        VirtualInputManager:SendMouseButtonEvent(cx, cy, 0, true, game, 0)
-        task.wait(0.05)
-        VirtualInputManager:SendMouseButtonEvent(cx, cy, 0, false, game, 0)
-        fired = true
-    end)
-
-    return fired
-end
-
--- =============================================
--- FIRE ALL EVENTS (PC + Mobile)
--- =============================================
-local function fireAllEvents(obj)
-    local fired = false
-
-    -- PC events
-    local pcEvents = {
+    -- Lấy toàn bộ events có thể có trên GuiObject
+    local allEvents = {
+        -- Touch (mobile)
+        "TouchTap", "TouchLongPress", "TouchPan", "TouchPinch",
+        "TouchRotate", "TouchSwipe", "TouchStarted", "TouchEnded",
+        -- Input
+        "InputBegan", "InputChanged", "InputEnded",
+        -- Mouse (fallback)
         "MouseButton1Click", "MouseButton1Down", "MouseButton1Up",
-        "Activated", "InputBegan", "InputEnded", "MouseEnter"
+        "MouseButton2Click", "MouseButton2Down", "MouseButton2Up",
+        "MouseEnter", "MouseLeave", "MouseMoved", "MouseWheelBackward", "MouseWheelForward",
+        -- GUI
+        "Activated", "SelectionGained", "SelectionLost",
     }
-    for _, ev in ipairs(pcEvents) do
-        pcall(function()
-            fired = fired or fireConnections(obj, ev)
-        end)
-    end
 
-    -- Mobile/Touch events
-    local touchEvents = {
-        "TouchTap", "TouchLongPress", "TouchSwipe",
-        "TouchPinch", "TouchRotate", "TouchPan"
-    }
-    for _, ev in ipairs(touchEvents) do
-        pcall(function()
-            fired = fired or fireConnections(obj, ev)
+    for _, evName in ipairs(allEvents) do
+        local ok, conns = pcall(function()
+            return getconnections(obj[evName])
         end)
+        if ok and conns then
+            for _, conn in ipairs(conns) do
+                local sok = pcall(function()
+                    conn:Fire()
+                end)
+                if sok then
+                    fired = true
+                    print("[FIRE] " .. obj:GetFullName() .. " -> " .. evName)
+                end
+            end
+        end
     end
-
-    -- Simulate actual touch position
-    fired = fired or simulateTouch(obj)
 
     return fired
 end
 
 -- =============================================
--- FIND & FIRE REMOTES
+-- CORE: Lấy upvalue script để gọi hàm skip
 -- =============================================
-local function findAndFireRemotes()
-    local keywords = {"skip", "tutorial"}
+local function tryScriptUpvalues(frame)
+    -- Tìm tất cả LocalScript liên quan trong PlayerGui
+    local playerGui = player:FindFirstChild("PlayerGui")
+    if not playerGui then return end
+
+    for _, script in ipairs(playerGui:GetDescendants()) do
+        if script:IsA("LocalScript") or script:IsA("ModuleScript") then
+            -- Thử lấy upvalues (chỉ executor hỗ trợ)
+            local ok, upvals = pcall(debug.getupvalues, script)
+            if ok and upvals then
+                for k, v in pairs(upvals) do
+                    if type(v) == "function" then
+                        local name = tostring(k):lower()
+                        if name:find("skip") or name:find("tutorial") or name:find("close") or name:find("finish") then
+                            print("[Upvalue] Gọi hàm: " .. tostring(k))
+                            pcall(v)
+                        end
+                    end
+                end
+            end
+
+            -- Thử getgenv / getrenv
+            local ok2, env = pcall(getfenv, script)
+            if ok2 and env then
+                for k, v in pairs(env) do
+                    if type(v) == "function" then
+                        local name = tostring(k):lower()
+                        if name:find("skip") or name:find("tutorial") or name:find("close") or name:find("finish") then
+                            print("[Env] Gọi hàm: " .. tostring(k))
+                            pcall(v)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+-- =============================================
+-- CORE: Fire BindableEvent liên quan
+-- =============================================
+local function fireBindables()
+    local keywords = {"skip", "tutorial", "close", "finish", "complete", "next"}
+    for _, obj in ipairs(game:GetDescendants()) do
+        if obj:IsA("BindableEvent") or obj:IsA("BindableFunction") then
+            local name = obj.Name:lower()
+            for _, kw in ipairs(keywords) do
+                if name:find(kw) then
+                    print("[Bindable] Fire: " .. obj:GetFullName())
+                    if obj:IsA("BindableEvent") then
+                        pcall(function() obj:Fire() end)
+                    else
+                        pcall(function() obj:Invoke() end)
+                    end
+                end
+            end
+        end
+    end
+end
+
+-- =============================================
+-- CORE: Fire Remote liên quan
+-- =============================================
+local function fireRemotes()
+    local keywords = {"skip", "tutorial", "close", "finish", "complete"}
     for _, obj in ipairs(game:GetDescendants()) do
         if obj:IsA("RemoteEvent") or obj:IsA("RemoteFunction") then
             local name = obj.Name:lower()
             for _, kw in ipairs(keywords) do
                 if name:find(kw) then
-                    print("Remote: " .. obj:GetFullName())
+                    print("[Remote] Fire: " .. obj:GetFullName())
                     if obj:IsA("RemoteEvent") then
                         pcall(function() obj:FireServer() end)
                     else
@@ -134,72 +132,10 @@ local function findAndFireRemotes()
 end
 
 -- =============================================
--- FORCE DISMISS
--- =============================================
-local function forceDismissTutorial()
-    local keywords = {"Tutorial", "PartOne", "TutorialHandler", "HUD"}
-    for _, obj in ipairs(game:GetDescendants()) do
-        for _, kw in ipairs(keywords) do
-            if obj.Name:find(kw) then
-                pcall(function()
-                    if obj:IsA("ScreenGui") or obj:IsA("Frame") then
-                        obj.Enabled = false
-                        print("[ForceDismiss] Disabled: " .. obj:GetFullName())
-                    end
-                    if obj:IsA("LocalScript") or obj:IsA("Script") then
-                        obj.Disabled = true
-                        print("[ForceDismiss] Script disabled: " .. obj:GetFullName())
-                    end
-                end)
-                break
-            end
-        end
-    end
-end
-
--- =============================================
--- SET VALUES
--- =============================================
-local function setTutorialValues()
-    for _, obj in ipairs(game:GetDescendants()) do
-        if obj:IsA("BoolValue") or obj:IsA("IntValue") then
-            local name = obj.Name:lower()
-            if name:find("tutorial") or name:find("skip") or name:find("complet") then
-                pcall(function()
-                    if obj:IsA("BoolValue") then obj.Value = true end
-                    if obj:IsA("IntValue") then obj.Value = 1 end
-                    print("[Value] Set: " .. obj:GetFullName())
-                end)
-            end
-        end
-    end
-end
-
--- =============================================
--- TRY ACTIVATE (Frame + Children)
--- =============================================
-local function tryActivateFrame(frame)
-    local fired = false
-
-    -- Fire trên tất cả children (TextButton, ImageButton, Frame)
-    for _, child in ipairs(frame:GetDescendants()) do
-        if child:IsA("TextButton") or child:IsA("ImageButton") or child:IsA("Frame") then
-            print("Thử child: " .. child:GetFullName())
-            fired = fired or fireAllEvents(child)
-        end
-    end
-
-    -- Fire trên chính frame
-    fired = fired or fireAllEvents(frame)
-
-    return fired
-end
-
--- =============================================
--- RUN SKIP TUTORIAL
+-- MAIN: Tìm và kích hoạt SkipTutorial
 -- =============================================
 local function runSkipTutorial()
-    print("=== SkipTutorial bắt đầu (Mobile + PC) ===")
+    print("=== SkipTutorial START ===")
     local done = false
     local attempts = 0
 
@@ -207,46 +143,56 @@ local function runSkipTutorial()
         attempts = attempts + 1
         task.wait(0.1)
 
-        local button = nil
+        -- Tìm frame
+        local frame = nil
         for _, desc in ipairs(game:GetDescendants()) do
             if desc.Name == "SkipTutorial" then
-                button = desc
+                frame = desc
                 break
             end
         end
 
-        if button then
-            print("Tìm thấy: " .. button:GetFullName() .. " | Class: " .. button.ClassName)
+        if frame then
+            print("[" .. attempts .. "] Found: " .. frame:GetFullName())
 
-            local m1 = tryActivateFrame(button)
-            findAndFireRemotes()
-            forceDismissTutorial()
-            setTutorialValues()
+            -- B1: Fire tất cả connections trên frame
+            local f1 = fireAllConnections(frame)
 
-            if m1 then
+            -- B2: Fire tất cả connections trên children
+            for _, child in ipairs(frame:GetDescendants()) do
+                fireAllConnections(child)
+            end
+
+            -- B3: Thử upvalue script
+            tryScriptUpvalues(frame)
+
+            -- B4: Fire bindables
+            fireBindables()
+
+            -- B5: Fire remotes
+            fireRemotes()
+
+            if f1 then
                 done = true
-                print("=== Kích hoạt thành công sau " .. attempts .. " lần ===")
+                print("=== SUCCESS sau " .. attempts .. " lần ===")
             end
         else
             if attempts % 20 == 0 then
-                print("Chưa thấy SkipTutorial... lần " .. attempts)
+                print("Chưa thấy SkipTutorial... " .. attempts)
             end
         end
     end
 end
 
 -- =============================================
--- MAIN LOGIC
+-- TELEPORT + RUN
 -- =============================================
 local function checkAndTeleport()
     if game.PlaceId ~= targetPlaceId then
-        print("Đang dịch chuyển về đúng Place...")
+        print("Teleporting...")
         TeleportService:Teleport(targetPlaceId, player)
     else
-        if setfpscap then
-            setfpscap(2)
-            print("Đã hạ FPS xuống 2.")
-        end
+        if setfpscap then setfpscap(2) end
         task.spawn(runSkipTutorial)
     end
 end
