@@ -46,7 +46,7 @@ getgenv().Config = {
                 -- If a rarity is not listed or empty, pets of that rarity will NOT be recycled
                 -- If a rarity has versions listed, ONLY those versions will be recycled
 
-                common = {"regular","neon","mega"},  -- Recycle all common versions
+                common = {"regular","neon","mega"},  --     Recycle all common versions
                 uncommon = {"regular","neon","mega"},                    -- Only recycle neon uncommons
                 rare = {"regular","neon","mega"},     -- Recycle all rare versions
                 ultra_rare = {"neon","mega"}, -- Recycle all ultra rare versions
