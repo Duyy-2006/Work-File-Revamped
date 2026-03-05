@@ -57,10 +57,10 @@ getgenv().Config = {
         },
         AutoRecycle = {
             Enabled = true, -- Recycle pets at recycler for rewards
-            RarityFilter = {common = true, uncommon = true, rare = true, ultra_rare = true, legendary = true}, -- Which rarities to recycle (true = recycle, false = keep)
+            RarityFilter = {common = true, uncommon = true, rare = true, ultra_rare = true, legendary = false}, -- Which rarities to recycle (true = recycle, false = keep)
             AgeFilter = {}, -- empty = all ages, or {1,2,3,4,5,6}
             VersionFilter = {}, -- empty = all, or {"regular", "neon", "mega"}
-            ExcludedPets = {"pet_recycler_2025_giant_panda", "penguins_2025_dango_penguins", "food_pets_2026_dragonfruit_fox"}, -- Pet IDs to never recycle even if rarity matches {"dog", "cat"}
+            ExcludedPets = {"pet_recycler_2025_giant_panda", "penguins_2025_dango_penguins", "food_pets_2026_dragonfruit_fox","alicorn", "ancient_dragon", "blue_whale", "dango_penguins", "diamond_dragon", "diamond_griffin", "diamond_mahi_mahi", "diamond_unicorn", "dragonfruit_fox", "dragonfly", "emberlight", "golden_dragon", "golden_griffin", "golden_unicorn", "sea_turtle", "silverback_gorilla"}, -- Pet IDs to never recycle even if rarity matches {"dog", "cat"}
         },
         IdleProgression = {
             Enabled = true, -- Put pets in pet pen for idle leveling
