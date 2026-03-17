@@ -27,7 +27,7 @@ getgenv().Config = {
         AutoNeon = {
             Enabled = false, -- Enable auto neon/mega fusion
             MakeMega = false, -- Fuse neons into mega neons
-            NeonAll = true, -- Neon everything possible
+            NeonAll = false, -- Neon everything possible
             SelectedPets = {}, -- {} when NeonAll = true, otherwise {"dog", "cat"} etc
             MaxPerType = {}, -- {} = unlimited, {dog = 2, cat = 1} = limits per pet type
         },
@@ -56,7 +56,7 @@ getgenv().Config = {
             Items = {}, -- Item IDs to auto open
         },
         AutoRecycle = {
-            Enabled = true, -- Recycle pets at recycler for rewards
+            Enabled = false, -- Recycle pets at recycler for rewards
             RarityFilter = {common = true, uncommon = true, rare = true, ultra_rare = true, legendary = false}, -- Which rarities to recycle (true = recycle, false = keep)
             AgeFilter = {}, -- empty = all ages, or {1,2,3,4,5,6}
             VersionFilter = {}, -- empty = all, or {"regular", "neon", "mega"}
