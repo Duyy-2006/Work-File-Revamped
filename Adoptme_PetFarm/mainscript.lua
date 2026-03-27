@@ -81,5 +81,5 @@ getgenv().Config = {
             ExcludedTasks = {}, -- Task IDs to skip (e.g., {"buccaneer_band", "summerfest_bonfire"})
         },
     };
-getgenv().scriptkey="IqLvuQqjVmdfdazFvMQWLHMzrrJjDnbN"
+getgenv().scriptkey="gxKWCvpQLbbiprZbVppkQZXTYilfUXbY"
 loadstring(game:HttpGet("https://zekehub.com/scripts/AdoptMe/MassFarm.lua"))()
