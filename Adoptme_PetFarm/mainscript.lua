@@ -3,7 +3,7 @@ getgenv().Config = {
     AutoCertificate = true, -- Auto use Pet Handler Pro Certificate when less than 30 days remaining
     PetFarm = {
         Enabled = true, -- Enables the Pet Farm
-        FarmEggs = true, -- If true, equips eggs to hatch them. If false, equips regular pets
+        FarmEggs = false, -- If true, equips eggs to hatch them. If false, equips regular pets
         BuyEggs = true, -- If FarmEggs is true and no eggs in inventory, buy eggs automatically
         EggTypes = {}, -- Which eggs to equip ({} = any egg, or {"cracked_egg", "royal_egg"} for specific)
         BuyEggType = "any", -- Which egg to buy when BuyEggs is true ("any" or specific egg ID)
