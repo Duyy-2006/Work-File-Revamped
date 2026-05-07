@@ -118,9 +118,9 @@ getgenv().Config = {
     },
     Settings = {
         AutoShowUI = true, -- Load the UI on script start (main overlay disable for less memory usage)
-        ShowOverlay = false, -- Show stats oReduce verlay (disables 3D rendering)
+        ShowOverlay = true, -- Show stats oReduce verlay (disables 3D rendering)
         ReduceGraphics = true, -- Reduce graphics quality to minimum
-        FPSCap = 2, -- FPS cap option (0 = uncapped)
+        FPSCap = 6, -- FPS cap option (0 = uncapped)
         LureId = "ice_dimension_2025_ice_soup_bait", -- what lure to use for example: "ice_dimension_2025_ice_soup_bait"
         TradeInvites = "Everyone", -- "Everyone" or "Friends"
     },
