@@ -1,7 +1,7 @@
 getgenv().Config = {
     Dashboard = {
-        Enabled = true,
-        SyncConfig = true,
+        Enabled = false,
+        SyncConfig = false,
         GroupName = "vps1",
     },
     BabyFarm = true, -- baby need stream song song, ăn cap bucks + giảm idle
@@ -14,7 +14,7 @@ getgenv().Config = {
         BuyEggType = "any",
         MaxPets = 1, -- F2P
         FarmUntilFullGrown = true, -- ⚠️ FALSE để Phase 4 farm được Full Grown pet
-        PrioritizeFriendship = false, -- ưu tiên pet gần lên level (active ở Phase 4)
+        PrioritizeFriendship = true, -- ưu tiên pet gần lên level (active ở Phase 4)
         SelectiveFarm = false,
         SelectedPetTypes = {},
     },
