@@ -1,8 +1,11 @@
 getgenv().Config = {
-
+    Dashboard = {
+        Enabled = false,
+        SyncConfig = false,
+        GroupName = "vps1",
+    },
     BabyFarm = true, -- Max bucks bằng baby need stream
     AutoCertificate = true, -- Auto dùng Cert nếu drop (tăng cap lên 500)
-
     PetFarm = {
         Enabled = true, -- Equip pet duy nhất để farm bucks
         FarmEggs = false, -- ⚠️ KHÔNG hatch egg → giữ làm output
