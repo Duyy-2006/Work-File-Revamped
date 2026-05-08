@@ -44,7 +44,7 @@ getgenv().Config = {
     },
     AutoBuy = {
         Enabled = true, -- BẬT: bootstrap stockpile tự động
-        SelectedItems = {"cracked_egg","royal_egg","pet_egg"},
+        SelectedItems = {"cracked_egg"},
         BuyAmounts = {15}, -- mua tổng 6 Cracked Egg → đủ build stockpile, sau đó dừng
     },
     AutoPay = {
