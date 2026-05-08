@@ -6,7 +6,7 @@ getgenv().Config = {
     PetFarm = {
         Enabled = true, -- Equip pet duy nhất để farm bucks
         FarmEggs = false, -- ⚠️ KHÔNG hatch egg → giữ làm output
-        BuyEggs = false, -- Dùng AutoBuy thay
+        BuyEggs = true, -- Dùng AutoBuy thay
         EggTypes = {},
         BuyEggType = "any",
         MaxPets = 1, -- F2P
@@ -19,15 +19,12 @@ getgenv().Config = {
     AutoBuy = {
         Enabled = true,
         SelectedItems = {
-            "cracked_egg",      -- Common, 350 bucks (rẻ nhất, mua được nhiều)
-            "pet_egg",          -- Uncommon, 600 bucks
             "royal_egg",        -- Legendary, 1450 bucks
-            "retired_egg",      -- Common, 600 bucks (VIP room)
             "endangered_egg",
             "endangered_2026_egg",
             "endangered_egg_2026",   -- Legendary limited, 750 bucks
         },
-        BuyAmounts = {},
+        BuyAmounts = {300,100,100,100},
     },
     AutoRecycle = {
         Enabled = false, -- BẬT: tránh inventory đầy block AutoBuy
